@@ -1,0 +1,31 @@
+nnoremap  <silent><leader>ff <cmd>:lua require('telescope.builtin').find_files({ hidden = true })<cr> 
+nnoremap  <silent><leader>fg :lua require('telescope.builtin').live_grep({ hidden = true })<cr> 
+
+
+nnoremap <silent> <leader>git :LazyGit<CR>
+
+nnoremap <silent> <leader>p :Prettier<CR>
+
+nnoremap <leader>w :w<CR>
+nnoremap <leader>ww :w<CR>
+" ----------------------------------------------------------------------------
+" move to the window in the direction shown, or create a new split in that
+" direction
+" func! WinMove(key)
+"     let t:curwin = winnr()
+"     exec "wincmd ".a:key
+"     if (t:curwin == winnr())
+"         if (match(a:key,'[jk]'))
+"             wincmd v
+"         else
+"             wincmd s
+"         endif
+"         exec "wincmd ".a:key
+"     endif
+" endfu
+
+" nnoremap <leader>h :call WinMove('h')<cr>
+" nnoremap <leader>j :call WinMove('j')<cr>
+" nnoremap <leader>k :call WinMove('k')<cr>
+" nnoremap <leader>l :call WinMove('l')<cr>
+
