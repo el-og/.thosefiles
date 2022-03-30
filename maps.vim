@@ -40,3 +40,4 @@ nnoremap <leader>l :call WinMove('l')<cr>
 " Floating terminal on top
 nnoremap <leader>t :FloatermNew<CR>
 nnoremap <leader>b :FloatermNew --title=Ranger ranger<CR>
+nnoremap <leader>btc :FloatermNew --title=sudo snap run cointop<CR>
