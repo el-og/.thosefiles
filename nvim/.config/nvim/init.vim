@@ -20,7 +20,7 @@ call plug#begin ('~/.vim/plugged')
  Plug 'mbbill/undotree'
  Plug 'tpope/vim-surround'
  " Plug 'f-person/git-blame.nvim'
- Plug 'prettier/vim-prettier', { \ 'do': 'yarn install --frozen-lockfile --production'}
+ Plug 'prettier/vim-prettier', {  'do': 'yarn install --frozen-lockfile --production'}
 call plug#end()
 colorscheme gruvbox
 
