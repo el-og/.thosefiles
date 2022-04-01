@@ -4,7 +4,7 @@ nnoremap  <silent><leader>fg :lua require('telescope.builtin').live_grep({ hidde
 
 nnoremap <silent> <leader>git :LazyGit<CR>
 
-nnoremap <silent> <leader>p :Prettier<CR>
+nnoremap <silent> <plug><leader>p :Prettier<CR>
 
 " ----------------------------------------------------------------------------
 " Quick save
@@ -40,4 +40,11 @@ nnoremap <leader>l :call WinMove('l')<cr>
 " Floating terminal on top
 nnoremap <leader>t :FloatermNew<CR>
 nnoremap <leader>b :FloatermNew --title=Ranger ranger<CR>
-nnoremap <leader>btc :FloatermNew --title=sudo snap run cointop<CR>
+" nnoremap <leader>btc :FloatermNew --title=sudo snap run cointop<CR>
+nnoremap <leader><leader>btc :FloatermNew --title=sudo cointop<CR>
+
+
+" ----------------------------------------------------------------------------
+" Floating terminal on top
+nnoremap <leader>fav :lua require("harpoon.mark").add_file()<CR>
+nnoremap <leader>favs :lua require("harpoon.ui").toggle_quick_menu()<CR>

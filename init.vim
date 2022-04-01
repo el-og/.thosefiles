@@ -8,18 +8,19 @@ call plug#begin ('~/.vim/plugged')
  Plug 'mhinz/vim-startify'
  Plug 'tpope/vim-commentary'
  Plug 'nvim-lua/plenary.nvim'
+ Plug 'ThePrimeagen/harpoon'
  Plug 'nvim-telescope/telescope.nvim'
  Plug 'neoclide/coc.nvim', {'branch':'release'}
  Plug 'gruvbox-community/gruvbox'
  Plug 'kyazdani42/nvim-tree.lua'
  Plug 'kyazdani42/nvim-web-devicons'
-Plug 'nvim-lualine/lualine.nvim'
+ Plug 'nvim-lualine/lualine.nvim'
  Plug 'voldikss/vim-floaterm'
-Plug 'neoclide/vim-jsx-improve'
-Plug 'mbbill/undotree'
- " post install (yarn install | npm install) then load plugin only for editing supported files
-Plug 'prettier/vim-prettier', {
-   \ 'do': 'yarn install --frozen-lockfile --production'}
+ " Plug 'neoclide/vim-jsx-improve'
+ Plug 'mbbill/undotree'
+ Plug 'tpope/vim-surround'
+ " Plug 'f-person/git-blame.nvim'
+ Plug 'prettier/vim-prettier', { \ 'do': 'yarn install --frozen-lockfile --production'}
 call plug#end()
 colorscheme gruvbox
 
