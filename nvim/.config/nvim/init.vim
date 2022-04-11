@@ -13,6 +13,8 @@ call plug#begin ('~/.vim/plugged')
  Plug 'neoclide/coc.nvim', {'branch':'release'}
  Plug 'gruvbox-community/gruvbox'
  Plug 'kyazdani42/nvim-tree.lua'
+ Plug 'nvim-treesitter/nvim-treesitter' 
+ Plug 'nvim-treesitter/nvim-treesitter-angular'
  Plug 'kyazdani42/nvim-web-devicons'
  Plug 'nvim-lualine/lualine.nvim'
  Plug 'voldikss/vim-floaterm'
