@@ -76,20 +76,11 @@ devIcons.setup({override = override_icons, default = true})
 
 -- NvimTree
 vim.g.nvim_tree_icons = {
-  default = circle,
-  symlink = circle,
-  folder = {
-    default = circle,
-    open = circle,
-    empty = circle,
-    empty_open = circle,
-    symlink = circle,
-    symlink_open = circle
-  }
 }
 
 EOF
 
+"
 " require'nvim-tree.view'.win_open()
 " local tree_cb = require'nvim-tree.config'.nvim_tree_callback
 " function tree_open_close()

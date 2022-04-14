@@ -4,7 +4,7 @@ nnoremap  <silent><leader>fg :lua require('telescope.builtin').live_grep({ hidde
 
 nnoremap <silent> <leader>git :LazyGit<CR>
 
-nnoremap <silent> <plug><leader>p :Prettier<CR>
+nnoremap <silent> <leader>p :Prettier<CR>
 
 " ----------------------------------------------------------------------------
 " Quick save

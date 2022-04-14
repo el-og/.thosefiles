@@ -186,3 +186,5 @@ function! s:cocActionsOpenFromSelected(type) abort
 endfunction
 " xmap <silent> <leader>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
 " nmap <silent> <leader>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
+
+command! -nargs=0 Prettier :CocCommand prettier.forceFormatDocument

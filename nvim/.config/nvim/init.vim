@@ -18,11 +18,13 @@ call plug#begin ('~/.vim/plugged')
  Plug 'kyazdani42/nvim-web-devicons'
  Plug 'nvim-lualine/lualine.nvim'
  Plug 'voldikss/vim-floaterm'
+ " Plug 'yamatsum/nvim-nonicons' 
  " Plug 'neoclide/vim-jsx-improve'
  Plug 'mbbill/undotree'
  Plug 'tpope/vim-surround'
  " Plug 'f-person/git-blame.nvim'
- Plug 'prettier/vim-prettier', {  'do': 'yarn install --frozen-lockfile --production'}
+ " Plug 'prettier/vim-prettier', {  'do': 'yarn install --frozen-lockfile --production'}
+ Plug 'jparise/vim-graphql'
 call plug#end()
 colorscheme gruvbox
 
