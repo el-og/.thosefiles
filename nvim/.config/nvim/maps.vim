@@ -1,6 +1,7 @@
 nnoremap  <silent><leader>ff <cmd>:lua require('telescope.builtin').find_files({ hidden = true })<cr> 
 nnoremap  <silent><leader>fg :lua require('telescope.builtin').live_grep({ hidden = true })<cr> 
 
+nnoremap <leader>dt :silent exec '! tmux display-popup -h 90\% -w 90\% -E "tmux attach -d -t nvim_popup \|\| tmux new -s nvim_popup"'<CR>
 
 nnoremap <silent> <leader>git :LazyGit<CR>
 

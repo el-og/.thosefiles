@@ -18,7 +18,6 @@ call plug#begin ('~/.vim/plugged')
  Plug 'kyazdani42/nvim-web-devicons'
  Plug 'nvim-lualine/lualine.nvim'
  Plug 'voldikss/vim-floaterm'
- " Plug 'yamatsum/nvim-nonicons' 
  " Plug 'neoclide/vim-jsx-improve'
  Plug 'mbbill/undotree'
  Plug 'tpope/vim-surround'
