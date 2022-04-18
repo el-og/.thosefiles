@@ -1,13 +1,35 @@
-
 nnoremap <C-n> :NvimTreeToggle<CR>
 nnoremap <leader>r :NvimTreeRefresh<CR>
 " nnoremap <leader>n :NvimTreeFindFile<CR>
 nnoremap <leader>n :NvimTreeFindFileToggle<CR>
 
+" let g:renderer.indent_markers.enable=1
 lua << EOF
 -- following options are the default
 -- each of these are documented in `:help nvim-tree.OPTION_NAME`
+-- vim.g.renderer.indent_markers.enable=1
 require'nvim-tree'.setup {
+    renderer = {
+    -- This option shows indent markers when folders are open.
+        indent_markers = {
+          enable = true,
+          icons = {
+            corner = '└ ',
+            edge = '│ ',
+            none = '  ',
+          },
+        },
+    },
+    view = {
+        -- width of the window, can be either a number (columns) or a string in `%`, for left or right side placement
+        width = 50,
+        -- height of the window, can be either a number (columns) or a string in `%`, for top or bottom side placement
+        height = 30,
+        -- side of the tree, can be one of 'left' | 'right' | 'top' | 'bottom'
+        side = 'left',
+        -- if true the tree will resize itself after opening a file
+        auto_resize = true
+    }
 }
 
 -- DevIcons

@@ -12,6 +12,7 @@ call plug#begin ('~/.vim/plugged')
  Plug 'nvim-telescope/telescope.nvim'
  Plug 'neoclide/coc.nvim', {'branch':'release'}
  Plug 'gruvbox-community/gruvbox'
+ " Plug 'folke/tokyonight.nvim', {'branch':'main'}
  Plug 'kyazdani42/nvim-tree.lua'
  Plug 'nvim-treesitter/nvim-treesitter' 
  Plug 'nvim-treesitter/nvim-treesitter-angular'
@@ -26,12 +27,14 @@ call plug#begin ('~/.vim/plugged')
  Plug 'jparise/vim-graphql'
 call plug#end()
 colorscheme gruvbox
+" colorscheme tokyonight
+
 
 let mapleader = " "
 runtime ./maps.vim
 runtime ./plugin/coc.vim
 " runtime ./plugin/lualine.vim
-set guifont=Hack_Nerd_Font_Mono:h16  
+" set guifont=Hack_Nerd_Font_Mono:h16  
 
 " let g:coc_node_path= '/Users/oskarasg/.nvm/versions/node/v12.17.0/bin/node'
 

@@ -16,6 +16,9 @@ export ZSH="$HOME/.oh-my-zsh"
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="powerlevel10k/powerlevel10k"
+# Powerlevel10k no prompt
+typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
+
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -112,6 +115,9 @@ alias v="nvim"
 alias vi="nvim"
 alias vim="nvim"
 
+alias tog="tmux attach -d -t og || tmux new -s og"
+alias tmistergreen="tmux attach -d -t mistergreen || tmux new -s mistergreen"
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
@@ -129,3 +135,28 @@ bindkey -v
 MODE_INDICATOR="%F{yellow}--- NORMAL ---%f"
 VI_MODE_RESET_PROMPT_ON_MODE_CHANGE=true
 VI_MODE_SET_CURSOR=true
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Detect nvmrc
+autoload -U add-zsh-hook
+load-nvmrc() {
+  local node_version="$(nvm version)"
+  local nvmrc_path="$(nvm_find_nvmrc)"
+
+  if [ -n "$nvmrc_path" ]; then
+    local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
+
+    if [ "$nvmrc_node_version" = "N/A" ]; then
+      nvm install
+    elif [ "$nvmrc_node_version" != "$node_version" ]; then
+      nvm use
+    fi
+  elif [ "$node_version" != "$(nvm version default)" ]; then
+    echo "Reverting to nvm default version"
+    nvm use default
+  fi
+}
+add-zsh-hook chpwd load-nvmrc
+load-nvmrc
+source /Users/oskarasg/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
