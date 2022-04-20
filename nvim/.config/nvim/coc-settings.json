@@ -1,3 +1,20 @@
 {
-"coc.preferences.messageLevel": "error"
+  "coc.preferences.formatOnSaveFiletypes": [
+    "markdown",
+    "javascript",
+    "html",
+    "css",
+    "scss",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "json",
+    "graphql",
+    "elixir",
+    "eelixir"
+  ],
+  "coc.preferences.messageLevel": "error",
+  "angular.log": "verbose",
+  "angular.trace.server": "verbose",
+  "angular.suggest.includeCompletionsWithSnippetText": true
 }

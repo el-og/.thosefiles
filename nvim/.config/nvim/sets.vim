@@ -4,6 +4,7 @@ set wildmenu
 set wildmode=full
 
 set exrc
+set mouse=a
 set nohlsearch
 set hidden
 set noerrorbells

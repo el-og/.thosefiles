@@ -1,4 +1,15 @@
-
+let g:coc_global_extensions = [
+      \ 'coc-tsserver',
+      \ 'coc-html',
+      \ 'coc-css',
+      \ 'coc-yaml',
+      \ 'coc-json',
+      \ 'coc-vimlsp',
+      \ 'coc-diagnostic',
+      \ 'coc-actions',
+      \ 'coc-eslint',
+      \ ]
+      " \ 'coc-angular',
 " Set internal encoding of vim, not needed on neovim, since coc.nvim using some
 " unicode characters in the file autoload/float.vim
 set encoding=utf-8
@@ -186,5 +197,9 @@ function! s:cocActionsOpenFromSelected(type) abort
 endfunction
 " xmap <silent> <leader>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
 " nmap <silent> <leader>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
+
+" ANGULAR BINDINGS
+nnoremap <silent> <leader>gtt :<C-u>execute 'CocCommand angular.goToTemplateForComponent'<CR>
+nnoremap <silent> <leader>gtc :<C-u>execute 'CocCommand angular.goToComponentWithTemplateFile'<CR>
 
 command! -nargs=0 Prettier :CocCommand prettier.forceFormatDocument
