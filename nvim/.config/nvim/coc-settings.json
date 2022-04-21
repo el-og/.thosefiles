@@ -9,12 +9,9 @@
     "typescript",
     "typescriptreact",
     "json",
-    "graphql",
-    "elixir",
-    "eelixir"
+    "graphql"
   ],
   "coc.preferences.messageLevel": "error",
   "angular.log": "verbose",
   "angular.trace.server": "verbose",
-  "angular.suggest.includeCompletionsWithSnippetText": true
 }

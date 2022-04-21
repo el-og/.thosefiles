@@ -26,14 +26,14 @@ call plug#begin ('~/.vim/plugged')
  " Plug 'prettier/vim-prettier', {  'do': 'yarn install --frozen-lockfile --production'}
  Plug 'jparise/vim-graphql'
  Plug 'christoomey/vim-system-copy'
- Plug 'machakann/vim-highlightedyank'
+ " Plug 'machakann/vim-highlightedyank'
  Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
  Plug 'iamcco/coc-angular', {'do': 'yarn install --frozen-lockfile && yarn build'}
 call plug#end()
 colorscheme gruvbox
 highlight Normal guibg=none
 " colorscheme tokyonight
-
+" let g:highlightedyank_highlight_duration = 300
 
 let mapleader = " "
 runtime ./maps.vim
@@ -49,8 +49,18 @@ let g:floaterm_width=0.85
 " let g:coc_filetype_map = {
 "             \ 'javascript.jsx': 'javascriptreact'
 "             \  }
+
+" nicer way?
+autocmd VimEnter * :GitBlameDisable
+autocmd VimEnter * call CocActionAsync('activeExtension', 'coc-angular')
+autocmd VimEnter * call CocActionAsync('activeExtension', 'coc-tsserver')
+autocmd VimEnter * call CocActionAsync('activeExtension', 'coc-css')
+autocmd VimEnter * call CocActionAsync('activeExtension', 'coc-html')
+autocmd VimEnter * call CocActionAsync('activeExtension', 'coc-json')
+
+" Highlight active line
 set cursorline
-hi cursorline cterm=none term=none
-autocmd WinEnter * setlocal cursorline
-autocmd WinLeave * setlocal nocursorline
-highlight CursorLine guibg=#FFFFFF ctermbg=234
+augroup highlight_yank
+    autocmd!
+    au TextYankPost * silent! lua vim.highlight.on_yank({higroup="IncSearch", timeout=300})
+augroup END
