@@ -54,11 +54,11 @@ let g:floaterm_width=0.85
 " nicer way?
 autocmd VimEnter * :GitBlameDisable
 
-" autocmd VimEnter * call CocActionAsync('activeExtension', 'coc-angular')
-" autocmd VimEnter * call CocActionAsync('activeExtension', 'coc-tsserver')
-" autocmd VimEnter * call CocActionAsync('activeExtension', 'coc-css')
-" autocmd VimEnter * call CocActionAsync('activeExtension', 'coc-html')
-" autocmd VimEnter * call CocActionAsync('activeExtension', 'coc-json')
+autocmd VimEnter * call CocActionAsync('activeExtension', 'coc-angular')
+autocmd VimEnter * call CocActionAsync('activeExtension', 'coc-tsserver')
+autocmd VimEnter * call CocActionAsync('activeExtension', 'coc-css')
+autocmd VimEnter * call CocActionAsync('activeExtension', 'coc-html')
+autocmd VimEnter * call CocActionAsync('activeExtension', 'coc-json')
 
 " Highlight active line
 set cursorline
@@ -67,12 +67,25 @@ augroup highlight_yank
     au TextYankPost * silent! lua vim.highlight.on_yank({higroup="IncSearch", timeout=300})
 augroup END
 
+" vim.notify = require("notify")
+" local plugin = "Error Information"
+" vim.notify(data)
+"
+"
 
-func! Blah()
+    " echo a:variable
+lua << EOF
+function check_errors(info)
+    vim.notify = require("notify")
+    vim.notify(info)
+    --vim.api.nvim_command('echo ' .. info)
+end
+EOF
 
-endfu
+" command! Blah lua require check_errors()
 
-func! Test()
+
+func! Test(data)
 
 lua << EOF
 vim.notify = require("notify")
@@ -80,7 +93,7 @@ vim.notify = require("notify")
  vim.notify("This is an error message.\nSomething went wrong!", "error", {
    title = plugin,
    on_open = function()
-     vim.notify("Attempting recovery.", vim.lsp.log_levels.WARN, {
+     vim.notify(data, vim.lsp.log_levels.WARN, {
        title = plugin,
      })
      local timer = vim.loop.new_timer()
@@ -98,11 +111,4 @@ vim.notify = require("notify")
  })
 EOF
 endfu
-" local async = require("plenary.async")
-" local notify = require("notify").async
-
-" async.run(function()
-"   notify("Let's wait for this to close").events.close()
-"   notify("It closed!")
-" end)
 
