@@ -53,5 +53,10 @@ endif
 
 " ----------------------------------------------------------------------------
 " Floating terminal on top
-nnoremap <leader>fav :lua require("harpoon.mark").add_file()<CR>
-nnoremap <leader>favs :lua require("harpoon.ui").toggle_quick_menu()<CR>
+nnoremap <leader>s :lua require("harpoon.mark").add_file()<CR>
+nnoremap <leader>ss :lua require("harpoon.ui").toggle_quick_menu()<CR>
+
+
+" MY STUFF
+
+nnoremap <silent><leader><leader>e :! notify_errors_nvim.sh %<CR>
