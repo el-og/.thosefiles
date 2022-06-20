@@ -1,3 +1,25 @@
+# HOMEBREW PATH
+# export PATH="/opt/homebrew/bin:$PATH"
+# Handle Mac platforms
+CPU=$(uname -p)
+if [[ "$CPU" == "arm" ]]; then
+    export PATH="/opt/homebrew/bin:$PATH"
+    export EDITOR=/opt/homebrew/bin/nano
+    alias nano=/opt/homebrew/bin/nano
+    alias oldbrew=/usr/local/bin/brew
+else
+    export PATH="/usr/local/bin:$PATH"
+    export EDITOR=/usr/local/bin/nano
+    alias nano=/usr/local/bin/nano
+fi
+
+
+# TSserver logs
+set TSS_LOG=-level verbose -file  $HOME/tsserver.log
+
+# DISABLE CHROMIUM INSTALLATION WITH PUPETEER
+export PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
+export PUPPETEER_EXECUTABLE_PATH=`which chromium`
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -29,6 +51,7 @@ load-nvmrc
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
+# COMMENTED OUT
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
@@ -109,6 +132,7 @@ typeset -g POWERLEVEL10K_INSTANT_PROMPT=quiet
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 # plugins=(git)
+# zsh autosuggest removed
 plugins=(zsh-autosuggestions git tmux ag brew fd fzf vi-mode yarn zsh-interactive-cd nvm node urltools ripgrep jira copyfile copypath web-search)
 
 source $ZSH/oh-my-zsh.sh
@@ -140,11 +164,13 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias lg="lazygit"
 alias v="nvim"
-alias vi="nvim"
+#alias vi="nvim"
 alias vim="nvim"
 
 alias tog="tmux attach -d -t og || tmux new -s og"
 alias tmistergreen="tmux attach -d -t mistergreen || tmux new -s mistergreen"
+
+alias cls="clear"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

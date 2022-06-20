@@ -16,9 +16,9 @@ nnoremap <leader>w :w<CR>
 nnoremap <leader>ww :w<CR>
 " Quick save & quit
 nnoremap <leader>wq :wq<CR>
-nnoremap <leader>q :q<CR>
+nnoremap <leader>q  :q<CR>
 nnoremap <leader>qq :q<CR>
-nnoremap <leader>qa :qa<CR>
+nnoremap <leader>qa :SSave! last_session <bar> :qa<CR>
 
 " ----------------------------------------------------------------------------
 " move to the window in the direction shown, or create a new split in that
@@ -53,10 +53,23 @@ endif
 
 " ----------------------------------------------------------------------------
 " Floating terminal on top
-nnoremap <leader>s :lua require("harpoon.mark").add_file()<CR>
-nnoremap <leader>ss :lua require("harpoon.ui").toggle_quick_menu()<CR>
+nnoremap <silent><leader>s :lua require("harpoon.mark").add_file()<CR>
+nnoremap <silent><leader>ss :lua require("harpoon.ui").toggle_quick_menu()<CR>
 
 
 " MY STUFF
 
-nnoremap <silent><leader><leader>e :! notify_errors_nvim.sh %<CR>
+nnoremap <silent><leader><leader>e :! notify_errors_nvim.sh <CR>
+nnoremap <silent><leader><leader>ll :vsp ~/Projects/platform/packages/api/api-eslint-errors.txt <CR>
+
+"Quick search word with telescope
+nnoremap <expr> <leader>sw ':Telescope find_files<cr>' . "'" . expand('<cword>')
+" nnoremap <silent><leader>fg <cmd>Telescope live_grep hidden=true<cr>
+
+lua << EOF
+require('telescope').setup{
+	defaults = {
+		path_display={"smart"} 
+	}
+}
+EOF

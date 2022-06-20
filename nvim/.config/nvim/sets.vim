@@ -23,7 +23,7 @@ set incsearch
 set scrolloff=8
 set noshowmode
 set completeopt=menuone,noinsert,noselect
-" set colorcolumn=80
+set colorcolumn=120
 set signcolumn=yes
 set updatetime=50
 

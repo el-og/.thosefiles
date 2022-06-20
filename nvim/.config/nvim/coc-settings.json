@@ -1,17 +1,9 @@
 {
-  "coc.preferences.formatOnSaveFiletypes": [
-    "markdown",
-    "javascript",
-    "html",
-    "css",
-    "scss",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact",
-    "json",
-    "graphql"
-  ],
-  "coc.preferences.messageLevel": "error",
-  "angular.log": "verbose",
-  "angular.trace.server": "verbose",
+    "eslint.alwaysShowStatus": true,
+    "tsserver.npm": "/Users/oskarasg/.nvm/versions/node/v16.14.2/bin/npm",
+    "tsserver.log": "verbose",
+    "tsserver.trace.server": "verbose",
+    "coc.preferences.messageLevel": "error",
+    "angular.log": "verbose",
+    "angular.trace.server": "verbose" 
 }
