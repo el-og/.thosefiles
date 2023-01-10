@@ -1,14 +1,24 @@
-" nnoremap  <silent><leader>ff <cmd>:lua require('telescope.builtin').find_files()<cr> 
+noremap  <silent><leader>fv <cmd>Telescope find_files hidden=true<cr> 
 " nnoremap  <silent><leader>fg :lua require('telescope.builtin').live_grep()<cr> 
 
-nnoremap <silent><leader>ff <cmd>Telescope find_files hidden=true<cr>
-nnoremap <silent><leader>fg <cmd>Telescope live_grep hidden=true<cr>
+noremap <silent><leader>ff :lua require('telescope.builtin').resume()<CR>
+noremap <silent><leader>fg <cmd>Telescope live_grep hidden=true<cr>
+noremap <silent><leader>fh <cmd>:lua require("telescope").extensions.live_grep_args.live_grep_args({ hidden = true })<cr>
 
 nnoremap <leader>dt :silent exec '! tmux display-popup -h 90\% -w 90\% -E "tmux attach -d -t nvim_popup \|\| tmux new -s nvim_popup"'<CR>
 
 nnoremap <silent> <leader>git :LazyGit<CR>
 
 nnoremap <silent> <leader>p :Prettier<CR>
+
+nmap <silent>sl "ayiwoconsole.log('<C-R>a:', <C-R>a);<Esc>
+
+nmap <silent>~ :bp<CR>
+nmap <silent>Z :bn<CR>
+
+" replace selected (all instances)
+vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
+
 
 " ----------------------------------------------------------------------------
 " Quick save
