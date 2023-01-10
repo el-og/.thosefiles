@@ -2,12 +2,13 @@ set nocompatible
 set path+=**
 set wildmenu
 set wildmode=full
+" set background=dark
 
 set exrc
 set mouse=a
 set nohlsearch
 set hidden
-set noerrorbells
+" set noerrorbells
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
@@ -23,14 +24,14 @@ set incsearch
 set scrolloff=8
 set noshowmode
 set completeopt=menuone,noinsert,noselect
-set colorcolumn=120
+" set colorcolumn=120
 set signcolumn=yes
 set updatetime=50
 
 set encoding=utf-8
 set shortmess+=c
 set laststatus=2
-set statusline+=%F
+set statusline+=\ %F
 set showcmd
 set nobackup
 set nowritebackup

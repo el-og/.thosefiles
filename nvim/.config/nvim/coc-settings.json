@@ -5,5 +5,14 @@
     "tsserver.trace.server": "verbose",
     "coc.preferences.messageLevel": "error",
     "angular.log": "verbose",
-    "angular.trace.server": "verbose" 
+    "angular.trace.server": "verbose",
+    "coc.preferences.formatOnSaveFiletypes": [
+        "javascript",
+        "html",
+        "css",
+        "scss",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact"
+    ]
 }
