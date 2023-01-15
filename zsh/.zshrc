@@ -1,5 +1,6 @@
 # HOMEBREW PATH
 # export PATH="/opt/homebrew/bin:$PATH"
+# alias python=/opt/homebrew/bin/python3
 # Handle Mac platforms
 CPU=$(uname -p)
 if [[ "$CPU" == "arm" ]]; then
@@ -13,6 +14,7 @@ else
     alias nano=/usr/local/bin/nano
 fi
 
+export EDITOR=nvim
 
 # TSserver logs
 set TSS_LOG=-level verbose -file  $HOME/tsserver.log
@@ -189,3 +191,20 @@ VI_MODE_SET_CURSOR=true
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 source /Users/oskarasg/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/oskarasg/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/oskarasg/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/oskarasg/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/oskarasg/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+
+#SuperCollider
+alias sclang=/Volumes/SuperCollider/SuperCollider.app/Contents/MacOS/sclang
+alias scsynth=/Volumes/SuperCollider/SuperCollider.app/Contents/Resources/scsynth
+
+
+#OpenAI
+export OPENAI_API_KEY=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
+
+# autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /opt/homebrew/bin/terraform terraform
