@@ -123,6 +123,15 @@ packer.startup(function(use)
 
     use 'voldikss/vim-floaterm'
     -- use 'renerocksai/telekasten.nvim'
+
+    use {
+        "chrsm/impulse.nvim",
+        config = function()
+            require("impulse").setup({})
+        end,
+        requires = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim" },
+    }
+
     use 'christoomey/vim-system-copy'
     use 'folke/which-key.nvim'
 
@@ -131,7 +140,7 @@ packer.startup(function(use)
     use "lewis6991/impatient.nvim" -- Speed up loading Lua modules in Neovim to improve startup time.
     use "jbyuki/venn.nvim" -- draw ASCII
 
-    -- use "zbirenbaum/copilot.lua"
+    use "zbirenbaum/copilot.lua"
 
     use 'jackMort/ChatGPT.nvim'
     use 'MunifTanjim/nui.nvim'

@@ -9,6 +9,19 @@ local function session_name()
     return require('possession.session').session_name or ''
 end
 
+local colors = {
+    -- red = '#ca1243',
+    grey = '#F3F4ED',
+    -- light_grey = '#bebebe',
+    -- black = '#383a42',
+    -- white = '#f3f3f3',
+    -- light_green = '#83a598',
+    -- orange = '#fe8019',
+    -- green = '#8ec07c',
+    -- synth_dark = '#4a495f',
+    -- synth_light = '#5c2c6d',
+}
+
 lualine.setup {
     options = {
         icons_enabled = true,
@@ -21,7 +34,9 @@ lualine.setup {
     sections = {
         lualine_a = { 'mode' },
         lualine_b = { 'diff',
-            { 'diagnostics', sources = { 'nvim_lsp', 'coc' } } },
+            { 'diagnostics', sources = { 'nvim_lsp', 'coc' } },
+            fg = colors.white, bg = colors.white,
+        },
         -- lualine_x = { 'encoding', 'fileformat', 'filetype' },
         lualine_x = {
             -- session_name,
@@ -52,18 +67,7 @@ lualine.setup {
 
 
 -- from net
--- local colors = {
---     red = '#ca1243',
---     grey = '#a0a1a7',
---     light_grey = '#bebebe',
---     black = '#383a42',
---     white = '#f3f3f3',
---     light_green = '#83a598',
---     orange = '#fe8019',
---     green = '#8ec07c',
---     synth_dark = '#4a495f',
---     synth_light = '#5c2c6d',
--- }
+
 --
 -- local theme = {
 --     normal = {
