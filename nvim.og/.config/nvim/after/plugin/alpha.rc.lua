@@ -97,6 +97,9 @@ local function mru(start, cwd, items_number, opts)
     local target_width = 39
 
     local tbl = {}
+
+    local truncate = require("plenary.strings").truncate
+
     for i, fn in ipairs(oldfiles) do
         local short_fn
         if cwd then
@@ -105,12 +108,8 @@ local function mru(start, cwd, items_number, opts)
             short_fn = vim.fn.fnamemodify(fn, ":~")
         end
 
-        if #short_fn > target_width then
-            short_fn = plenary_path.new(short_fn):shorten(1, { -2, -1 })
-            if #short_fn > target_width then
-                short_fn = plenary_path.new(short_fn):shorten(1, { -1 })
-            end
-        end
+        // truncate dis bish
+        short_fn = truncate(short_fn, target_width, nil, -1)
 
         local shortcut = tostring(i + start - 1)
 
@@ -191,10 +190,12 @@ local buttons = {
         dashboard.button("f", "  Find file", "<cmd>Telescope find_files<CR>"),
         dashboard.button("g", "  Live grep", "<cmd>Telescope live_grep<CR>"),
         dashboard.button("s", "  Sessions", "<cmd>Telescope possession list<CR>"),
+        dashboard.button("lg", "  LazyGit", "<cmd>LazyGit<CR>"),
         dashboard.button("c", "  Configuration", "<cmd>e ~/.config/nvim/init.lua <CR>"),
-        dashboard.button("db", "  DB UI", "<cmd>:DBUI<CR>"),
-        dashboard.button("b", "  Crypto charts", "<cmd>:FloatermNew --title=sudo cointop<CR>"), -- TODO: FLoatTerm size fix
-        dashboard.button("ai", "  ChatGPT", "<cmd>:ChatGPT<CR>"),
+        dashboard.button("db", "  DB UI", "<cmd>DBUI<CR>"),
+        dashboard.button("b", "  Crypto charts", "<cmd>FloatermNew --title=sudo cointop<CR>"), -- TODO: FLoatTerm size fix
+        dashboard.button("ai", "  ChatGPT", "<cmd>ChatGPT<CR>"),
+        dashboard.button("m", "  Open Spotify", "<cmd>! open -a 'Spotify'<CR>"),
         dashboard.button("u", "  Update plugins", "<cmd>PackerUpdate<CR>"),
         dashboard.button("q", "  Quit", "<cmd>qa<CR>"),
     },

@@ -95,16 +95,16 @@ packer.startup(function(use)
 
     use 'norcalli/nvim-colorizer.lua'
     -- use 'folke/zen-mode.nvim'
-    -- use({
-    --   "iamcco/markdown-preview.nvim",
-    --   run = function() vim.fn["mkdp#util#install"]() end,
-    -- })
+    use({
+        "iamcco/markdown-preview.nvim",
+        run = function() vim.fn["mkdp#util#install"]() end,
+    })
 
     use 'nvim-tree/nvim-tree.lua'
 
     -- use 'lewis6991/gitsigns.nvim'
     use 'kdheepak/lazygit.nvim' -- For git blame & browse
-    use 'dinhhuy258/git.nvim' -- For git blame & browse
+    use 'f-person/git-blame.nvim' -- For git blame & browse
 
     use 'theprimeagen/harpoon'
     use "ThePrimeagen/refactoring.nvim"
@@ -122,7 +122,8 @@ packer.startup(function(use)
     -- use 'tpope/vim-repeat'
 
     use 'voldikss/vim-floaterm'
-    -- use 'renerocksai/telekasten.nvim'
+    use 'renerocksai/telekasten.nvim'
+    use 'renerocksai/calendar-vim'
 
     use {
         "chrsm/impulse.nvim",
@@ -151,7 +152,7 @@ packer.startup(function(use)
     use 'jedrzejboczar/possession.nvim' -- session manager
 
     use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
-    use 's1n7ax/nvim-window-picker'
+    -- use 's1n7ax/nvim-window-picker'
 
     use { 'Wansmer/treesj', requires = 'nvim-treesitter' } -- split or join blocks of code
 
