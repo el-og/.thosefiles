@@ -108,7 +108,7 @@ local function mru(start, cwd, items_number, opts)
             short_fn = vim.fn.fnamemodify(fn, ":~")
         end
 
-        // truncate dis bish
+        -- truncate dis bish
         short_fn = truncate(short_fn, target_width, nil, -1)
 
         local shortcut = tostring(i + start - 1)
