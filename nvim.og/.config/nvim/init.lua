@@ -5,8 +5,12 @@ require('og.plugins')
 require('og.winmove')
 
 vim.cmd [[
-  "" colorscheme gruvbox-material
-  colorscheme tokyonight-moon
+    if getcwd() ==# '/Users/oskarasg/.thosefiles'
+        colorscheme gruvbox-material
+    else
+        colorscheme tokyonight-moon
+    endif
+
   "" colorscheme terafox
   "" colorscheme nightfox
   "" colorscheme nordfox

@@ -51,6 +51,7 @@ packer.startup(function(use)
 
     -- use { 'tzachar/cmp-tabnine', run = './install.sh' }
     use 'neovim/nvim-lspconfig' -- LSP
+    use'j-hui/fidget.nvim' -- nvim-lsp progress for impatient
     use 'ray-x/cmp-treesitter'
     use 'chrisgrieser/cmp-nerdfont'
     -- use "jcha0713/cmp-tw2css"
@@ -73,10 +74,8 @@ packer.startup(function(use)
         --   { 'avneesh0612/react-nextjs-snippets' },
     } } -- Snippets
 
-    use {
-        'nvim-treesitter/nvim-treesitter',
-        run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
-    }
+    use 'nvim-treesitter/nvim-treesitter'
+
     use 'nvim-treesitter/nvim-treesitter-textobjects'
     use 'kyazdani42/nvim-web-devicons' -- File icons
 
@@ -102,7 +101,7 @@ packer.startup(function(use)
 
     use 'nvim-tree/nvim-tree.lua'
 
-    -- use 'lewis6991/gitsigns.nvim'
+    use 'lewis6991/gitsigns.nvim' -- Git signs
     use 'kdheepak/lazygit.nvim' -- For git blame & browse
     use 'f-person/git-blame.nvim' -- For git blame & browse
 
@@ -173,6 +172,7 @@ packer.startup(function(use)
     -- use 'Pocco81/dap-buddy.nvim'
     use "rcarriga/nvim-dap-ui"
     -- use 'David-Kunz/jester' -- jest
+    use "folke/todo-comments.nvim"
 
 end)
 

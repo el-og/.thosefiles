@@ -76,7 +76,11 @@ keymap("n", "gh", "<cmd>Lspsaga lsp_finder<CR>")
 keymap({ "n", "v" }, "<leader>ac", "<cmd>Lspsaga code_action<CR>")
 
 -- Rename
-keymap("n", "gr", "<cmd>Lspsaga rename<CR>")
+-- keymap("n", "gr", "<cmd>Lspsaga rename<CR>")
+-- References
+keymap("n", "<leader>gr", "<cmd> lua vim.lsp.buf.references()<CR>")
+-- hover
+keymap("n", "<leader>gt", "<cmd> lua vim.lsp.buf.hover()<CR>")
 
 -- Peek Definition
 -- you can edit the definition file in this flaotwindow

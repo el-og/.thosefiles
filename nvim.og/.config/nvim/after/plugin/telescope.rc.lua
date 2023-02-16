@@ -14,6 +14,7 @@ local lga_actions = require("telescope-live-grep-args.actions") -- live grep arg
 
 telescope.setup {
     defaults = {
+        path_display={"truncate"},
         mappings = {
             n = {
                 ["q"] = actions.close
