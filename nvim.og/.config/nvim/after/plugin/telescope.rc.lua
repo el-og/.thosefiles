@@ -58,6 +58,7 @@ vim.keymap.set('n', '<leader>fv',
             hidden = true
         })
     end)
+
 vim.keymap.set("n", "<leader>sf", function()
     telescope.extensions.file_browser.file_browser({
         path = "%:p:h",
@@ -67,7 +68,7 @@ vim.keymap.set("n", "<leader>sf", function()
         grouped = true,
         previewer = false,
         initial_mode = "normal",
-        layout_config = { height = 40 }
+        layout_config = { height = 40 },
     })
 end)
 

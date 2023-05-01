@@ -137,6 +137,9 @@ typeset -g POWERLEVEL10K_INSTANT_PROMPT=quiet
 # zsh autosuggest removed
 plugins=(zsh-autosuggestions git tmux ag brew fd fzf vi-mode yarn zsh-interactive-cd nvm node urltools ripgrep jira copyfile copypath web-search)
 
+# auto suggestions colors
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=5'
+
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -206,5 +209,5 @@ alias scsynth=/Volumes/SuperCollider/SuperCollider.app/Contents/Resources/scsynt
 #OpenAI
 export OPENAI_API_KEY=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
 
-# autoload -U +X bashcompinit && bashcompinit
+autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /opt/homebrew/bin/terraform terraform

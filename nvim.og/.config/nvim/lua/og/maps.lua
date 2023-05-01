@@ -38,6 +38,8 @@ keymap.set("n", "<leader><leader>btc", ":FloatermNew --title=sudo cointop<CR>", 
 --nnoremap <silent><leader><leader>e :! notify_errors_nvim.sh <CR>
 -- nnoremap <silent><leader><leader>ll :vsp ~/Projects/platform/packages/api/api-eslint-errors.txt <CR>
 
+-- Fullscreen toggle
+keymap.set("n", "<leader>ws", ":<C-w><C--><CR>", silent)
 vim.cmd [[
 
 ]]

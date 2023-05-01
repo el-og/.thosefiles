@@ -32,7 +32,7 @@ vim.defer_fn(function()
             filetypes = {
                 javascript = true,
                 typescript = true,
-                yaml = false,
+                yaml = true,
                 markdown = true,
                 help = false,
                 gitcommit = false,
