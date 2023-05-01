@@ -1,3 +1,27 @@
+# HOMEBREW PATH
+# export PATH="/opt/homebrew/bin:$PATH"
+# alias python=/opt/homebrew/bin/python3
+# Handle Mac platforms
+CPU=$(uname -p)
+if [[ "$CPU" == "arm" ]]; then
+    export PATH="/opt/homebrew/bin:$PATH"
+    export EDITOR=/opt/homebrew/bin/nano
+    alias nano=/opt/homebrew/bin/nano
+    alias oldbrew=/usr/local/bin/brew
+else
+    export PATH="/usr/local/bin:$PATH"
+    export EDITOR=/usr/local/bin/nano
+    alias nano=/usr/local/bin/nano
+fi
+
+export EDITOR=nvim
+
+# TSserver logs
+set TSS_LOG=-level verbose -file  $HOME/tsserver.log
+
+# DISABLE CHROMIUM INSTALLATION WITH PUPETEER
+export PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
+export PUPPETEER_EXECUTABLE_PATH=`which chromium`
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -29,6 +53,7 @@ load-nvmrc
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
+# COMMENTED OUT
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
@@ -109,7 +134,11 @@ typeset -g POWERLEVEL10K_INSTANT_PROMPT=quiet
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 # plugins=(git)
+# zsh autosuggest removed
 plugins=(zsh-autosuggestions git tmux ag brew fd fzf vi-mode yarn zsh-interactive-cd nvm node urltools ripgrep jira copyfile copypath web-search)
+
+# auto suggestions colors
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=5'
 
 source $ZSH/oh-my-zsh.sh
 
@@ -140,11 +169,13 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias lg="lazygit"
 alias v="nvim"
-alias vi="nvim"
+#alias vi="nvim"
 alias vim="nvim"
 
 alias tog="tmux attach -d -t og || tmux new -s og"
 alias tmistergreen="tmux attach -d -t mistergreen || tmux new -s mistergreen"
+
+alias cls="clear"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -163,3 +194,20 @@ VI_MODE_SET_CURSOR=true
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 source /Users/oskarasg/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/oskarasg/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/oskarasg/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/oskarasg/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/oskarasg/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+
+#SuperCollider
+alias sclang=/Volumes/SuperCollider/SuperCollider.app/Contents/MacOS/sclang
+alias scsynth=/Volumes/SuperCollider/SuperCollider.app/Contents/Resources/scsynth
+
+
+#OpenAI
+export OPENAI_API_KEY=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
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /opt/homebrew/bin/terraform terraform

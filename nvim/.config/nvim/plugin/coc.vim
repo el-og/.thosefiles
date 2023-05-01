@@ -1,6 +1,6 @@
+          " \ 'coc-html',
 let g:coc_global_extensions = [
-      \ 'coc-tsserver',
-          \ 'coc-html',
+          \ 'coc-angular',
           \ 'coc-css',
           \ 'coc-yaml',
           \ 'coc-json',
@@ -8,8 +8,10 @@ let g:coc_global_extensions = [
           \ 'coc-diagnostic',
           \ 'coc-actions',
           \ 'coc-eslint',
+          \ 'coc-tsserver',
+          \ 'coc-prettier',
+          \ 'coc-angular',
           \ ]
-          " \ 'coc-angular',
     " Set internal encoding of vim, not needed on neovim, since coc.nvim using some
     " unicode characters in the file autoload/float.vim
     set encoding=utf-8
@@ -43,16 +45,16 @@ let g:coc_global_extensions = [
     " Use tab for trigger completion with characters ahead and navigate.
     " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
     " other plugin before putting this into your config.
-    inoremap <silent><expr> <TAB>
-          \ pumvisible() ? "\<C-n>" :
-          \ <SID>check_back_space() ? "\<TAB>" :
-          \ coc#refresh()
+    " inoremap <silent><expr> <TAB>
+    "       \ pumvisible() ? "\<C-n>" :
+    "       \ <SID>check_back_space() ? "\<TAB>" :
+    "       \ coc#refresh()
     inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
-    function! s:check_back_space() abort
-      let col = col('.') - 1
-      return !col || getline('.')[col - 1]  =~# '\s'
-    endfunction
+    " function! s:check_back_space() abort
+    "   let col = col('.') - 1
+    "   return !col || getline('.')[col - 1]  =~# '\s'
+    " endfunction
 
     " Use <c-space> to trigger completion.
     if has('nvim')
@@ -199,7 +201,8 @@ endfunction
 " nmap <silent> <leader>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
 
 " ANGULAR BINDINGS
-nnoremap <silent> <leader>gtt :<C-u>execute 'CocCommand angular.goToTemplateForComponent'<CR>
-nnoremap <silent> <leader>gtc :<C-u>execute 'CocCommand angular.goToComponentWithTemplateFile'<CR>
 
-command! -nargs=0 Prettier :CocCommand prettier.forceFormatDocument
+autocmd FileType html nnoremap <buffer> <silent><leader>, :CocCommand angular.goToComponentWithTemplateFile<CR>
+autocmd FileType typescript nnoremap <buffer> <silent><leader>, :CocCommand angular.goToTemplateForComponent<CR>
+
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
