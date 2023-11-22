@@ -5,8 +5,7 @@ if (not status2) then return end
 
 mason.setup({
 
-    ensure_installed = { "eslint_d", "prettierd", "typescript_language_server", "css_lsp", "html_lsp", "terraformls",
-        "tflint", "lua_language_server" }
+    ensure_installed = { "prettierd", "typescript_language_server", "css_lsp", "html_lsp", "lua_language_server" }
 })
 
 lspconfig.setup {

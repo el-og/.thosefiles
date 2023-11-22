@@ -25,16 +25,22 @@ vim.cmd [[packadd packer.nvim]]
 
 packer.startup(function(use)
     use 'wbthomason/packer.nvim'
+    use 'pwntester/octo.nvim'
 
     use 'sainnhe/gruvbox-material'
     use 'folke/tokyonight.nvim'
     use 'EdenEast/nightfox.nvim'
+    use 'nvimdev/zephyr-nvim'
+    use 'karb94/neoscroll.nvim' -- smooth scrolling
     -- use 'xiyaowong/nvim-transparent'
     -- use 'shaunsingh/nord.nvim'
 
-    use { 'nvim-lualine/lualine.nvim', requires = {
-        { 'barklan/capslock.nvim' },
-    } } -- Statusline
+    use {
+    'nvim-lualine/lualine.nvim',
+    requires = { 'nvim-tree/nvim-web-devicons', opt = true }
+    }
+
+
     use 'nvim-lua/plenary.nvim' -- Common utilities
     use 'onsails/lspkind-nvim' -- vscode-like pictograms
 
@@ -45,13 +51,13 @@ packer.startup(function(use)
     use 'hrsh7th/cmp-path' -- nvim-cmp source for file paths
     use 'hrsh7th/cmp-cmdline' -- cmd cmp
     use 'saadparwaiz1/cmp_luasnip' -- snippets cmp
-    use 'andersevenrud/cmp-tmux'
+    -- use 'andersevenrud/cmp-tmux'
     use 'bydlw98/cmp-env'
-    use 'kristijanhusak/vim-dadbod-completion'
+    -- use 'kristijanhusak/vim-dadbod-completion'
 
     -- use { 'tzachar/cmp-tabnine', run = './install.sh' }
     use 'neovim/nvim-lspconfig' -- LSP
-    use'j-hui/fidget.nvim' -- nvim-lsp progress for impatient
+    -- use'j-hui/fidget.nvim' -- nvim-lsp progress for impatient
     use 'ray-x/cmp-treesitter'
     use 'chrisgrieser/cmp-nerdfont'
     -- use "jcha0713/cmp-tw2css"
@@ -62,8 +68,10 @@ packer.startup(function(use)
 
     use 'hashivim/vim-terraform'
 
+    use 'rcarriga/nvim-notify' -- Notifications
+
     use({
-        "glepnir/lspsaga.nvim",
+        "nvimdev/lspsaga.nvim",
         branch = "main",
         config = function()
             require('lspsaga').setup({})
@@ -76,13 +84,18 @@ packer.startup(function(use)
 
     use 'nvim-treesitter/nvim-treesitter'
 
-    use 'nvim-treesitter/nvim-treesitter-textobjects'
-    use 'kyazdani42/nvim-web-devicons' -- File icons
+    -- use 'nvim-treesitter/nvim-treesitter-textobjects'
+    use 'nvim-tree/nvim-web-devicons' -- File icons
 
     -- Telescope
     use 'nvim-telescope/telescope.nvim'
     use 'nvim-telescope/telescope-file-browser.nvim'
     use 'nvim-telescope/telescope-live-grep-args.nvim'
+    use 'cljoly/telescope-repo.nvim' -- :Telescope repo list
+    -- use 'nvim-telescope/telescope-media-files.nvim'
+    use 'nvim-lua/popup.nvim' -- Dependency for telescipe media
+
+    -- use 'edluffy/hologram.nvim' -- experimental preview for images
 
     use 'windwp/nvim-autopairs'
     use 'windwp/nvim-ts-autotag'
@@ -99,7 +112,11 @@ packer.startup(function(use)
         run = function() vim.fn["mkdp#util#install"]() end,
     })
 
-    use 'nvim-tree/nvim-tree.lua'
+    use "ellisonleao/glow.nvim" -- glow markdown
+    use 'jinh0/eyeliner.nvim' -- more intuitive remap for F/f
+
+    -- use 'nvim-tree/nvim-tree.lua'
+    use {'nvim-neo-tree/neo-tree.nvim', requires = 'MunifTanjim/nui.nvim'}
 
     use 'lewis6991/gitsigns.nvim' -- Git signs
     use 'kdheepak/lazygit.nvim' -- For git blame & browse
@@ -111,8 +128,8 @@ packer.startup(function(use)
     -- use 'tpope/vim-fugitive'
     -- use 'tpope/vim-abolish'
     -- use 'tpope/vim-unimpaired'
-    use 'tpope/vim-dadbod' -- interact with DB
-    use 'kristijanhusak/vim-dadbod-ui'
+    -- use 'tpope/vim-dadbod' -- interact with DB
+    -- use 'kristijanhusak/vim-dadbod-ui'
     use 'tpope/vim-surround'
     -- use 'tpope/vim-markdown'
     -- use 'tpope/vim-obsession'
@@ -151,7 +168,7 @@ packer.startup(function(use)
     use 'jedrzejboczar/possession.nvim' -- session manager
 
     use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
-    -- use 's1n7ax/nvim-window-picker'
+    use 's1n7ax/nvim-window-picker'
 
     use { 'Wansmer/treesj', requires = 'nvim-treesitter' } -- split or join blocks of code
 
@@ -160,6 +177,17 @@ packer.startup(function(use)
     use { 'barrett-ruth/import-cost.nvim', run = 'sh install.sh yarn' } -- display the costs of javascript imports
 
     use "dnlhc/glance.nvim" -- preview LSP locations (definition etc.)
+
+    -- PlantUML dependencies + plugin itself
+    -- use "weirongxu/plantuml-previewer.vim"
+    use "aklt/plantuml-syntax"
+    -- use "tyru/open-browser.vim"
+
+    -- minimal PlantUML plugin
+    use 'caosystema/nvim-soil'
+    -- Optional for puml syntax highlighting:
+    -- use 'caosystema/nvim-nyctophilia'
+
     use 'xorid/swap-split.nvim' -- swap windows/panes
     -- use { 'weilbith/nvim-code-action-menu', cmd = 'CodeActionMenu' } -- handy pop-up menu for code actions
 
@@ -167,12 +195,18 @@ packer.startup(function(use)
 
     -- Debugging
 
-    use 'mfussenegger/nvim-dap'
-    use "ravenxrz/DAPInstall.nvim"
+    -- use 'mfussenegger/nvim-dap'
+    -- use "ravenxrz/DAPInstall.nvim"
     -- use 'Pocco81/dap-buddy.nvim'
     use "rcarriga/nvim-dap-ui"
     -- use 'David-Kunz/jester' -- jest
     use "folke/todo-comments.nvim"
+
+    use "lukas-reineke/indent-blankline.nvim" -- indent
+
+    use 'stevearc/oil.nvim' -- file explorer
+    require("oil").setup()
+
 
 end)
 

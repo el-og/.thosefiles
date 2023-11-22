@@ -15,7 +15,7 @@ end
 null_ls.setup {
     sources = {
         null_ls.builtins.formatting.prettierd.with({
-            filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "json", "yaml", "yml","css", "scss", "html", "vue", "graphql", "lua", "xml" }
+            filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "json", "yaml", "yml","css", "scss", "html", "vue", "graphql", "lua", "xml"}
         }),
         null_ls.builtins.diagnostics.eslint_d.with({
             diagnostics_format = '[eslint] #{m}\n(#{c})'
@@ -36,10 +36,10 @@ null_ls.setup {
     end
 }
 
-vim.api.nvim_create_user_command(
-    'DisableLspFormatting',
-    function()
-        vim.api.nvim_clear_autocmds({ group = augroup, buffer = 0 })
-    end,
-    { nargs = 0 }
-)
+-- vim.api.nvim_create_user_command(
+--     'DisableLspFormatting',
+--     function()
+--         vim.api.nvim_clear_autocmds({ group = augroup, buffer = 0 })
+--     end,
+--     { nargs = 0 }
+-- )

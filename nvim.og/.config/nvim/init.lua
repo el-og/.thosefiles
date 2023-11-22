@@ -8,8 +8,9 @@ vim.cmd [[
     if getcwd() ==# '/Users/oskarasg/.thosefiles'
         colorscheme gruvbox-material
     else
-        colorscheme tokyonight-moon
+        colorscheme zephyr
     endif
+        hi LineNr guifg=#b5b3b3
 
   "" colorscheme terafox
   "" colorscheme nightfox

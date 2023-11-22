@@ -4,12 +4,13 @@ local silent = { silent = true }
 vim.g.mapleader = " "
 
 keymap.set("n", "<leader>git", ":LazyGit<CR>", silent)
+keymap.set("n", "<leader>do", ":FloatermNew --title=sudo lazydocker<CR>", silent)
 
 -- console.log('word_on_cursor:', word_on_cursor)
 keymap.set("n", "sl", "\"ayiwoconsole.log('<C-R>a:', <C-R>a);<Esc>", silent)
 
 -- change word under cursor
-keymap.set("n", "sr", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], silent)
+keymap.set("n", "<leader>sr", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], silent)
 
 -- find and replace all selected characted (visual mode)
 keymap.set("v", "<C-r>", "\"hy:%s/<C-r>h//gc<left><left><left>", silent)

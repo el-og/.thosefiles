@@ -5,6 +5,8 @@ vim.opt.wildoptions = 'pum'
 vim.opt.pumblend = 5
 vim.opt.background = 'dark'
 
+vim.g['rooter_cd_cmd'] = 'lcd'
+
 -- highlight yanked text for 200ms using the "Visual" highlight group
 -- vim.cmd [[
 --   augroup highlight_yank
@@ -43,11 +45,13 @@ autocmd({ "BufWritePre" }, {
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
-vim.cmd [[
-  set cursorline
-  hi cursorline cterm=none term=none
-  autocmd WinEnter * setlocal cursorline
-  autocmd WinLeave * setlocal nocursorline
-  highlight CursorLine guibg=#ffffff ctermbg=128
-  highlight Normal guibg=none
-]]
+-- vim.cmd [[
+--   set cursorline
+--   hi cursorline cterm=none term=none
+--   autocmd WinEnter * setlocal cursorline
+--   autocmd WinLeave * setlocal nocursorline
+--   highlight CursorLine guibg=#ffffff ctermbg=128
+--   highlight Normal guibg=none
+-- ]]
+
+-- vim.api.nvim_set_hl(0, 'LineNr', { fg = 'white'} )

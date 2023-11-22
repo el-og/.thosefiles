@@ -49,6 +49,9 @@ telescope.setup {
 }
 
 telescope.load_extension("file_browser")
+telescope.load_extension("repo")
+-- telescope.load_extension('media_files')
+
 -- telescope.load_extension("possession")
 
 vim.keymap.set('n', '<leader>fv',
@@ -76,7 +79,7 @@ vim.keymap.set('n', '<leader>fg', function()
     builtin.live_grep({ hidden = true })
 end)
 
-vim.keymap.set('n', ';g', function()
+vim.keymap.set('n', '<leader>fw', function()
     builtin.grep_string({ hidden = true })
 end)
 
@@ -99,3 +102,5 @@ end)
 vim.keymap.set("n", "<leader>fn", function()
     telescope.extensions.live_grep_args.live_grep_args()
 end)
+
+-- vim.keymap.set("n", "<leader>fm", "<Cmd>lua require('telescope').extensions.media_files.media_files()<CR>", { noremap = true, silent = true })

@@ -124,6 +124,21 @@ local function mru(start, cwd, items_number, opts)
 end
 
 local default_header = {
+    --   type = "terminal",
+    -- command = "neofetch",  -- | function -- the shell command to run
+    -- -- command size can be fixed, or calculated by mutating these
+    -- width = 0, -- number
+    -- height = 0, -- number
+    --
+    -- -- optional
+    -- opts = {
+    --     -- turns 'false' after the command is run
+    --     -- when redraw = true alpha will rerun the command
+    --     -- on the next redraw
+    --     redraw = true,
+    --     -- see :h nvim_open_win {config} parameter
+    --     window_config = {}
+    -- }
     type = "text",
     val = {
         [[      ___                   ___     ]],
@@ -187,7 +202,7 @@ local buttons = {
         { type = "text", val = "Quick links", opts = { hl = "SpecialComment", position = "center" } },
         { type = "padding", val = 1 },
         dashboard.button("e", "  New file", "<cmd>ene<CR>"),
-        dashboard.button("f", "  Find file", "<cmd>Telescope find_files<CR>"),
+        dashboard.button("f", "󱦞  Find file", "<cmd>Telescope find_files<CR>"),
         dashboard.button("g", "  Live grep", "<cmd>Telescope live_grep<CR>"),
         dashboard.button("s", "  Sessions", "<cmd>Telescope possession list<CR>"),
         dashboard.button("lg", "  LazyGit", "<cmd>LazyGit<CR>"),

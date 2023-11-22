@@ -16,7 +16,7 @@ cmp.setup({
         ["<C-n>"] = cmp.mapping.select_next_item(),
         ["<C-d>"] = cmp.mapping.scroll_docs(-4),
         ["<C-f>"] = cmp.mapping.scroll_docs(4),
-        ["<C-Space>"] = cmp.mapping.complete(),
+        ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
         ["<C-e>"] = cmp.mapping.close(),
         ["<CR>"] = cmp.mapping.confirm({
             behavior = cmp.ConfirmBehavior.Replace,
@@ -46,13 +46,13 @@ cmp.setup({
         { name = 'buffer' },
         { name = "cmp_luasnip" },
         { name = "cmp_cmdline" },
-        { name = "tmux" },
+        -- { name = "tmux" },
         { name = "env" },
         { name = "nerdfont" },
         { name = "nvim_lua" },
-        { name = "terraformls" },
+        -- { name = "terraformls" },
         { name = "treesitter" },
-        { name = "vim-dadbod-completion" },
+        -- { name = "vim-dadbod-completion" },
         -- { name = "cmp-tw2css" },
         -- { name = "cmp_tabnine" },
         { name = "path" },
@@ -135,6 +135,25 @@ nvim_lsp.terraformls.setup {
 --     },
 -- }
 
+-- -- Prisma setup
+-- nvim_lsp.prismals.setup {
+--     capabilities = capabilities,
+--     on_attach = function(client, bufnr)
+--         -- on_attach(client, bufnr)
+--         enable_format_on_save(client, bufnr)
+--     end,
+--     cmd = { "prisma-language-server", "--stdio" }
+-- }
+
+-- nvim_lsp.ember.setup {
+--     capabilities = capabilities,
+--     on_attach = function(client, bufnr)
+--         -- on_attach(client, bufnr)
+--         enable_format_on_save(client, bufnr)
+--     end,
+--     filetypes = { "handlebars", "typescript", "javascript", "typescript.glimmer", "javascript.glimmer" },
+--     cmd = { "ember-language-server", "--stdio" }
+-- }
 
 nvim_lsp.tsserver.setup {
     filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
