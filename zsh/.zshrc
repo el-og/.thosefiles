@@ -207,7 +207,7 @@ alias scsynth=/Volumes/SuperCollider/SuperCollider.app/Contents/Resources/scsynt
 
 
 #OpenAI
-export OPENAI_API_KEY=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
+export OPENAI_API_KEY=
 
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /opt/homebrew/bin/terraform terraform
