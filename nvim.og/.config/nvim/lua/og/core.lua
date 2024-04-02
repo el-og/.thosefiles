@@ -53,3 +53,8 @@ vim.opt.cmdheight = 1
 vim.opt.guicursor:append('a:-Cursor-blinkwait175-blinkoff150-blinkon175')
 vim.opt.splitright = true
 vim.opt.cursorline = true
+
+vim.opt.scrolloff = 9999
+
+-- For JoosepAlviste/nvim-ts-context-commentstring
+-- vim.g.skip_ts_context_commentstring_module = true

@@ -34,7 +34,7 @@ lualine.setup {
     sections = {
         lualine_a = { 'mode' },
         lualine_b = { 'diff',
-            { 'diagnostics', sources = { 'nvim_lsp', 'coc' } },
+            { 'diagnostics', sources = { 'nvim_lsp', } },
             fg = colors.white, bg = colors.white,
         },
         -- lualine_x = { 'encoding', 'fileformat', 'filetype' },
@@ -60,7 +60,7 @@ lualine.setup {
         lualine_a = { 'buffers' },
         lualine_x = {},
         lualine_y = {},
-        lualine_z = { 'tabs' }
+        -- lualine_z = { 'tabs' }
     },
     extensions = {}
 }

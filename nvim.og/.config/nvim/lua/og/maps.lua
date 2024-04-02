@@ -40,6 +40,16 @@ keymap.set("n", "<leader><leader>btc", ":FloatermNew --title=sudo cointop<CR>", 
 
 -- Fullscreen toggle
 keymap.set("n", "<leader>ws", ":<C-w><C--><CR>", silent)
+
+-- Debugger
+keymap.set("n", "<leader>dr", ":lua require('dapui').toggle()<CR>", silent)
+keymap.set("n", "<leader>db", ":lua require('dap').toggle_breakpoint()<CR>", silent)
+keymap.set("n", "<leader>dc", ":lua require('dap').continue()<CR>", silent)
+
+-- Toggle Maximize/Minimize window
+keymap.set("n", "<leader>z", ":WindowsMaximize <CR>", silent)
+
+
 vim.cmd [[
 
 ]]
