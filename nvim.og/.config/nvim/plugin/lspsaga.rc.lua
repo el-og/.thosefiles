@@ -82,6 +82,9 @@ keymap("n", "<leader>gr", "<cmd>Lspsaga finder<CR>")
 -- hover
 keymap("n", "<leader>gt", "<cmd> lua vim.lsp.buf.hover()<CR>")
 
+-- go to type definition
+keymap("n", "<leader>gT", "<cmd> lua vim.lsp.buf.type_definition()<CR>")
+
 -- Peek Definition
 -- you can edit the definition file in this flaotwindow
 -- also support open/vsplit/etc operation check definition_action_keys

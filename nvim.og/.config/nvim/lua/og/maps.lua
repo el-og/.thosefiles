@@ -12,7 +12,7 @@ keymap.set("n", "sl", "\"ayiwoconsole.log('<C-R>a:', <C-R>a);<Esc>", silent)
 keymap.set("n", "sr", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], silent)
 
 -- find and replace all selected characted (visual mode)
-keymap.set("v", "<C-r>", "\"hy:%s/<C-r>h//gc<left><left><left>", silent)
+keymap.set("v", "<C-r>", '"hy:%s/<C-r>h//gc<left><left><left>', silent)
 
 -- quick save
 keymap.set("n", "<leader>w", ":w<CR>", silent)
@@ -49,7 +49,6 @@ keymap.set("n", "<leader>dc", ":lua require('dap').continue()<CR>", silent)
 -- Toggle Maximize/Minimize window
 keymap.set("n", "<leader>z", ":WindowsMaximize <CR>", silent)
 
+vim.cmd([[
 
-vim.cmd [[
-
-]]
+]])

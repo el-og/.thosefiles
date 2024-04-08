@@ -1,70 +1,73 @@
 local status, lualine = pcall(require, "lualine")
-if (not status) then return end
+if not status then
+	return
+end
 
 local function current_buffer_number()
-    return "b:" .. vim.api.nvim_get_current_buf()
+	return "b:" .. vim.api.nvim_get_current_buf()
 end
 
 local function session_name()
-    return require('possession.session').session_name or ''
+	return require("possession.session").session_name or ""
 end
 
 local colors = {
-    -- red = '#ca1243',
-    grey = '#F3F4ED',
-    -- light_grey = '#bebebe',
-    -- black = '#383a42',
-    -- white = '#f3f3f3',
-    -- light_green = '#83a598',
-    -- orange = '#fe8019',
-    -- green = '#8ec07c',
-    -- synth_dark = '#4a495f',
-    -- synth_light = '#5c2c6d',
+	-- red = '#ca1243',
+	grey = "#F3F4ED",
+	-- light_grey = '#bebebe',
+	-- black = '#383a42',
+	-- white = '#f3f3f3',
+	-- light_green = '#83a598',
+	-- orange = '#fe8019',
+	-- green = '#8ec07c',
+	-- synth_dark = '#4a495f',
+	-- synth_light = '#5c2c6d',
 }
 
-lualine.setup {
-    options = {
-        icons_enabled = true,
-        theme = 'auto',
-        component_separators = { left = '', right = '' },
-        section_separators = { left = '', right = '' },
-        disabled_filetypes = {},
-        always_divide_middle = true,
-    },
-    sections = {
-        lualine_a = { 'mode' },
-        lualine_b = { 'diff',
-            { 'diagnostics', sources = { 'nvim_lsp', } },
-            fg = colors.white, bg = colors.white,
-        },
-        -- lualine_x = { 'encoding', 'fileformat', 'filetype' },
-        lualine_x = {
-            -- session_name,
-            -- { 'diagnostics', sources = { "nvim_diagnostic" }, symbols = { error = ' ', warn = ' ', info = ' ',
-            --     hint = ' ' } },
-            'encoding',
-            'filetype'
-        },
-        lualine_y = { 'progress' },
-        lualine_z = { 'location' }
-    },
-    inactive_sections = {
-        lualine_a = {},
-        lualine_b = {},
-        -- lualine_c = { 'filename' },
-        lualine_x = { 'location' },
-        lualine_y = {},
-        lualine_z = {}
-    },
-    tabline = {
-        lualine_a = { 'buffers' },
-        lualine_x = {},
-        lualine_y = {},
-        -- lualine_z = { 'tabs' }
-    },
-    extensions = {}
-}
-
+lualine.setup({
+	options = {
+		icons_enabled = true,
+		theme = "auto",
+		component_separators = { left = "", right = "" },
+		section_separators = { left = "", right = "" },
+		disabled_filetypes = {},
+		always_divide_middle = true,
+	},
+	sections = {
+		lualine_a = { "mode" },
+		lualine_b = {
+			"diff",
+			{ "diagnostics", sources = { "nvim_lsp" } },
+			fg = colors.white,
+			bg = colors.white,
+		},
+		-- lualine_x = { 'encoding', 'fileformat', 'filetype' },
+		lualine_x = {
+			-- session_name,
+			-- { 'diagnostics', sources = { "nvim_diagnostic" }, symbols = { error = ' ', warn = ' ', info = ' ',
+			--     hint = ' ' } },
+			"encoding",
+			"filetype",
+		},
+		lualine_y = { "progress" },
+		lualine_z = { "location" },
+	},
+	inactive_sections = {
+		lualine_a = {},
+		lualine_b = {},
+		-- lualine_c = { 'filename' },
+		lualine_x = { "location" },
+		lualine_y = {},
+		lualine_z = {},
+	},
+	tabline = {
+		lualine_a = { "buffers" },
+		lualine_x = {},
+		lualine_y = {},
+		-- lualine_z = { 'tabs' }
+	},
+	extensions = {},
+})
 
 -- from net
 

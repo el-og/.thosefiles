@@ -76,7 +76,7 @@ vim.keymap.set('n', '<leader>fg', function()
     builtin.live_grep({ hidden = true })
 end)
 
-vim.keymap.set('n', ';g', function()
+vim.keymap.set('n', '<leader>fw', function()
     builtin.grep_string({ hidden = true })
 end)
 
