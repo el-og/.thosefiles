@@ -148,8 +148,6 @@ cmp.setup({
 --   highlight! default link CmpItemKind CmpItemMenuDefault
 -- ]]
 --
--- local status, nvim_lsp = pcall(require, "lspconfig")
--- if (not status) then return end
 
 -- local on_attach = function(client, bufnr)
 --     local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
@@ -213,11 +211,16 @@ cmp.setup({
 --     },
 -- }
 
--- nvim_lsp.tsserver.setup {
---     filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
---     cmd = { "typescript-language-server", "--stdio" },
---     capabilities = capabilities
--- }
+-- local status, nvim_lsp = pcall(require, "lspconfig")
+-- if not status then
+-- 	return
+-- end
+--
+-- nvim_lsp.tsserver.setup({
+-- 	filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
+-- 	cmd = { "typescript-language-server", "--stdio" },
+-- 	capabilities = capabilities
+-- })
 
 -- " Use <Tab> and <S-Tab> to navigate through popup menu
 -- inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"

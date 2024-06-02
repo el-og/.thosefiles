@@ -112,6 +112,7 @@ require("lazy").setup({
 	--     "iamcco/markdown-preview.nvim",
 	--     run = function() vim.fn["mkdp#util#install"]() end,
 	-- }),
+	{ "ellisonleao/glow.nvim", config = true, cmd = "Glow" },
 
 	"nvim-tree/nvim-tree.lua",
 
@@ -126,6 +127,7 @@ require("lazy").setup({
 
 	"theprimeagen/harpoon",
 	"ThePrimeagen/refactoring.nvim",
+	"polarmutex/git-worktree.nvim",
 
 	-- use 'tpope/vim-fugitive'
 	-- use 'tpope/vim-abolish'
@@ -196,6 +198,34 @@ require("lazy").setup({
 	-- use { 'weilbith/nvim-code-action-menu', cmd = 'CodeActionMenu' } -- handy pop-up menu for code actions
 
 	-- use "rest-nvim/rest.nvim" -- http client written in Lua.
+
+	-- lazy.nvim:
+
+	-- Folding
+	"kevinhwang91/nvim-ufo",
+	"kevinhwang91/promise-async",
+
+	-- Folding side column
+	{
+		"luukvbaal/statuscol.nvim",
+		opts = function()
+			local builtin = require("statuscol.builtin")
+			return {
+				setopt = true,
+				-- override the default list of segments with:
+				-- number-less fold indicator, then signs, then line number & separator
+				segments = {
+					{ text = { builtin.foldfunc }, click = "v:lua.ScFa" },
+					{ text = { "%s" }, click = "v:lua.ScSa" },
+					{
+						text = { builtin.lnumfunc, " " },
+						condition = { true, builtin.not_empty },
+						click = "v:lua.ScLa",
+					},
+				},
+			}
+		end,
+	},
 
 	-- Debugging
 
@@ -363,6 +393,13 @@ require("lazy").setup({
 	-- use 'Pocco81/dap-buddy.nvim'
 	-- use 'David-Kunz/jester' -- jest
 	"folke/todo-comments.nvim",
+
+	{
+		"stevearc/oil.nvim",
+		opts = {},
+		-- Optional dependencies
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+	},
 
 	{
 		"anuvyklack/windows.nvim",

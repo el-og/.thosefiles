@@ -190,7 +190,7 @@ local buttons = {
 		dashboard.button("f", "󰈞  Find file", "<cmd>Telescope find_files<CR>"),
 		dashboard.button("g", "󰊄  Live grep", "<cmd>Telescope live_grep<CR>"),
 		dashboard.button("s", "  Sessions", "<cmd>Telescope possession list<CR>"),
-		dashboard.button("lg", "  LazyGit", "<cmd>LazyGit<CR>"),
+		dashboard.button("lg", "  LazyGit", "<cmd>FloatermNew --height=0.9 --width=0.9 lazygit<CR>"),
 		dashboard.button("c", "  Configuration", "<cmd>e ~/.config/nvim/init.lua <CR>"),
 		dashboard.button("u", "  Plugins", "<cmd>Lazy<CR>"),
 		-- dashboard.button("db", "  DB UI", "<cmd>DBUI<CR>"),
