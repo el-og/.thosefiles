@@ -20,9 +20,38 @@ vim.opt.rtp:prepend(lazypath)
 -- }
 
 require("lazy").setup({
-
 	-- 'wbthomason/packer.nvim',
+    -- {
+    {
+        "anurag3301/nvim-platformio.lua"},
+        dependencies = {
+        { "akinsho/nvim-toggleterm.lua" },
+        { "nvim-telescope/telescope.nvim" },
+        { "nvim-lua/plenary.nvim" },
+    },
+    {
+    "williamboman/mason.nvim"
+    },
 
+    --Oil trys
+    --spacelol
+    {
+  'stevearc/oil.nvim',
+      dependencies = { 'nvim-tree/nvim-web-devicons' },
+      keys = {
+        { '<leader>o',
+        function()
+        require('oil').open()
+        end,
+        desc = '[F]ormat buffer', }
+      },
+      opts = {
+        default_file_explorer = true,
+        view_options = {
+          show_hidden = true,
+        },
+      },
+    },
 	"sainnhe/gruvbox-material",
 	"folke/tokyonight.nvim",
 	-- 'EdenEast/nightfox.nvim',
@@ -85,7 +114,7 @@ require("lazy").setup({
 			--   { 'avneesh0612/react-nextjs-snippets' },
 		},
 	}, -- Snippets
-	"kipp01/stylua-nvim",
+	--"kipp01/stylua-nvim",
 
 	"nvim-treesitter/nvim-treesitter",
 
