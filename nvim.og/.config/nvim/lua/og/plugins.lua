@@ -19,6 +19,7 @@ vim.opt.rtp:prepend(lazypath)
 --   "vue",
 -- }
 
+
 require("lazy").setup({
 	-- 'wbthomason/packer.nvim',
     -- {
@@ -32,6 +33,7 @@ require("lazy").setup({
     {
     "williamboman/mason.nvim"
     },
+  'stevearc/oil.nvim',
 
     --Oil trys
     --spacelol
@@ -52,6 +54,52 @@ require("lazy").setup({
         },
       },
     },
+{
+  "folke/trouble.nvim",
+  opts = {}, -- for default options, refer to the configuration section for custom setup.
+  cmd = "Trouble",
+  keys = {
+    {
+      "<leader>xx",
+      "<cmd>Trouble diagnostics toggle<cr>",
+      desc = "Diagnostics (Trouble)",
+    },
+    {
+      "<leader>xX",
+      "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+      desc = "Buffer Diagnostics (Trouble)",
+    },
+    {
+      "<leader>cs",
+      "<cmd>Trouble symbols toggle focus=false<cr>",
+      desc = "Symbols (Trouble)",
+    },
+    {
+      "<leader>cl",
+      "<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
+      desc = "LSP Definitions / references / ... (Trouble)",
+    },
+    {
+      "<leader>xL",
+      "<cmd>Trouble loclist toggle<cr>",
+      desc = "Location List (Trouble)",
+    },
+    {
+      "<leader>xQ",
+      "<cmd>Trouble qflist toggle<cr>",
+      desc = "Quickfix List (Trouble)",
+    },
+  },
+},
+    'nvimdev/lspsaga.nvim',
+    config = function()
+        require('lspsaga').setup({})
+    end,
+    dependencies = {
+        'nvim-treesitter/nvim-treesitter', -- optional
+        'nvim-tree/nvim-web-devicons',     -- optional
+    },
+
 	"sainnhe/gruvbox-material",
 	"folke/tokyonight.nvim",
 	-- 'EdenEast/nightfox.nvim',
@@ -63,13 +111,28 @@ require("lazy").setup({
 	} }, -- Statusline
 	"nvim-lua/plenary.nvim", -- Common utilities
 	"onsails/lspkind-nvim", -- vscode-like pictograms
-
+    {
+    'kristijanhusak/vim-dadbod-ui',
+        dependencies = {
+        { 'tpope/vim-dadbod', lazy = true },
+        { 'kristijanhusak/vim-dadbod-completion', ft = { 'sql', 'mysql', 'plsql' }, lazy = true }, -- Optional
+        },
+        cmd = {
+        'DBUI',
+        'DBUIToggle',
+        'DBUIAddConnection',
+        'DBUIFindBuffer',
+          },
+        init = function()
+        -- Your DBUI configuration
+        vim.g.db_ui_use_nerd_fonts = 1
+        end,
+    },
 	-- 'hrsh7th/cmp-cmdline', -- cmd cmp
 	-- 'andersevenrud/cmp-tmux',
 	-- 'kristijanhusak/vim-dadbod-completion',
 
 	-- { ',tzachar/cmp-tabnine', run = './install.sh' }
-	"neovim/nvim-lspconfig", -- LSP
 	"j-hui/fidget.nvim", -- nvim-lsp progress for impatient
 
 	-- CMP
@@ -99,13 +162,6 @@ require("lazy").setup({
 		"pmizio/typescript-tools.nvim",
 		dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
 		opts = {},
-	},
-	{
-		"glepnir/lspsaga.nvim",
-		branch = "main",
-		config = function()
-			require("lspsaga").setup({})
-		end,
 	},
 	{
 		"L3MON4D3/LuaSnip",

@@ -25,6 +25,6 @@ enabled_layouts tall:bias=50;full_size=1;mirrored=false
 
 
 # BEGIN_KITTY_THEME
-# Substrata
+# Forest Night
 include current-theme.conf
 # END_KITTY_THEME
