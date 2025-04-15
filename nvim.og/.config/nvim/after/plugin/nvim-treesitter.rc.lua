@@ -18,15 +18,28 @@ treesitter.setup({
 		},
 	},
 })
+-- In your Neovim configuration file (init.lua or init.vim)
 
-treesitter.on_config_done = function()
-	local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
-	parser_config.ejs = {
-		install_info = {
-			url = "https://github.com/tree-sitter/tree-sitter-embedded-template",
-			files = { "src/parser.c" },
-			requires_generate_from_grammar = true,
-		},
-		filetype = "ejs",
-	}
-end
+-- Install required parsers
+require("nvim-treesitter.configs").setup({
+	ensure_installed = { "html", "javascript" },
+	-- ... other Treesitter configurations
+})
+
+-- EVERYTHING BELOW IS FOR EJS SYNTAX HIGHLIGHTING
+-- Set up filetype detection for .ejs
+vim.filetype.add({
+	extension = {
+		ejs = "html",
+	},
+})
+
+-- Configure Treesitter to use HTML parser for .ejs files
+local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+parser_config.ejs = {
+	install_info = {
+		url = "https://github.com/tree-sitter/tree-sitter-html",
+		files = { "src/parser.c", "src/scanner.c" },
+	},
+	filetype = "html",
+}
