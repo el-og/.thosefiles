@@ -12,6 +12,11 @@ keymap.set("n", "sl", "\"ayiwoconsole.log('<C-R>a:', <C-R>a);<Esc>", silent)
 -- change word under cursor
 keymap.set("n", "sr", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], silent)
 
+-- https://github.com/cshuaimin/ssr.nvim (structural search and replace)
+keymap.set({ "n", "x" }, "<leader>sr", function()
+	require("ssr").open()
+end)
+
 -- find and replace all selected characted (visual mode)
 keymap.set("v", "<C-r>", '"hy:%s/<C-r>h//gc<left><left><left>', silent)
 
