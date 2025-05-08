@@ -6,7 +6,7 @@ vim.opt.wildmode = "longest,list,full"
 
 vim.opt.exrc = true
 vim.opt.mouse = "a"
-vim.opt.hlsearch = false
+vim.opt.hlsearch = true
 vim.opt.hidden = true
 
 vim.opt.tabstop = 4

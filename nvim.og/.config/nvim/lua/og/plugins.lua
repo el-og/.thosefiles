@@ -86,7 +86,6 @@ require("lazy").setup({
 		},
 	}, -- Snippets
 	-- "kipp01/stylua-nvim",
-	"wesleimp/stylua.nvim",
 
 	"nvim-treesitter/nvim-treesitter",
 

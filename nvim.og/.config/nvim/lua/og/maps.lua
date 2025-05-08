@@ -57,6 +57,10 @@ keymap.set("n", "<leader>dc", ":lua require('dap').continue()<CR>", silent)
 -- Toggle Maximize/Minimize window
 keymap.set("n", "<leader>z", ":WindowsMaximize <CR>", silent)
 
+-- my custom remaps starts here????
+-- nnoremap <silent> <Esc> :nohlsearch<CR><Esc>
+keymap.set("n", "<Esc>", ":nohlsearch<CR>")
+
 vim.cmd([[
 
 ]])
