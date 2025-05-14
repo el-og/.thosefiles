@@ -3,6 +3,7 @@ require("og.highlights")
 require("og.maps")
 require("og.plugins")
 require("og.winmove")
+require("myndis")
 
 vim.cmd([[
     if getcwd() ==# '/Users/oskarasg/.thosefiles'
