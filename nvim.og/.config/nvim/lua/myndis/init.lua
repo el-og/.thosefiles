@@ -28,7 +28,7 @@ local function show_in_floating_window(lines)
 		if vim.api.nvim_win_is_valid(win_id) then
 			vim.api.nvim_win_close(win_id, true)
 		end
-	end, 3000)
+	end, 8000)
 end
 
 local function time_ago(iso_time)
@@ -56,21 +56,33 @@ local function time_ago(iso_time)
 end
 
 local username = "FuggiWuggi"
-local json = vim.fn.system("curl -s https://api.wiseoldman.net/v2/players/" .. username)
-local data = vim.fn.json_decode(json)
 
+-- Fetch API data
+local response = vim.fn.system("curl -s https://api.wiseoldman.net/v2/players/" .. username)
+
+-- Check for empty or nil response
+if not response or response == "" then
+	vim.notify("Failed to fetch data: empty response (VPN?)", vim.log.levels.ERROR)
+	return
+end
+
+-- Attempt to parse the JSON response
+local ok, data = pcall(vim.fn.json_decode, response)
+if not ok or not data then
+	vim.notify("Failed to parse JSON from response", vim.log.levels.ERROR)
+	return
+end
+
+-- Extract values safely
 if data and data.latestSnapshot and data.latestSnapshot.data then
-	local skills = data.latestSnapshot.data.skills
-	local attack = skills and skills.attack and skills.attack.level or "N/A"
+	local skills = data.latestSnapshot.data.skills or {}
+	local bosses = data.latestSnapshot.data.bosses or {}
 
+	local attack = skills.attack and skills.attack.level or "N/A"
 	local total_level = skills.overall and skills.overall.level or "N/A"
-
 	local total_ehb = data.ehb or "N/A"
 
-	local chambers_of_xeric_ehb = data.latestSnapshot.data.bosses
-			and data.latestSnapshot.data.bosses.chambers_of_xeric
-			and data.latestSnapshot.data.bosses.chambers_of_xeric.ehb
-		or "N/A"
+	local chambers_of_xeric_ehb = bosses.chambers_of_xeric and bosses.chambers_of_xeric.ehb or "N/A"
 
 	local snapshot_date = data.latestSnapshot.createdAt or "Unknown"
 	local snapshot_relative = snapshot_date ~= "Unknown" and time_ago(snapshot_date) or "Unknown"
@@ -84,5 +96,5 @@ if data and data.latestSnapshot and data.latestSnapshot.data then
 		"Snapshot: " .. snapshot_date .. " (" .. snapshot_relative .. ")",
 	})
 else
-	print("Could not retrieve data or snapshot.")
+	vim.notify("Could not retrieve data or snapshot", vim.log.levels.WARN)
 end

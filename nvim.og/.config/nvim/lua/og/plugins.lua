@@ -63,7 +63,10 @@ require("lazy").setup({
 	},
 
 	"nvimtools/none-ls.nvim", -- Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua
-	"williamboman/mason.nvim",
+	{
+		"mason-org/mason.nvim",
+		opts = {},
+	},
 	"williamboman/mason-lspconfig.nvim",
 
 	{
