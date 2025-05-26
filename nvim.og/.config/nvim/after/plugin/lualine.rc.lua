@@ -245,6 +245,13 @@ lualine.setup({
 	},
 	tabline = {
 		lualine_a = { "buffers" },
+		lualine_c = {
+			{
+				"filename",
+				path = 1, -- 0 = filename, 1 = relative path, 2 = absolute path
+				shorting_target = 100, -- Optional: shortens long paths
+			},
+		},
 		lualine_x = {},
 		lualine_y = {},
 		-- lualine_z = { 'tabs' }

@@ -6,7 +6,7 @@ require("og.winmove")
 require("myndis")
 
 vim.cmd([[
-    if getcwd() ==# '/Users/oskarasg/.thosefiles'
+    if getcwd() ==# '$HOME/.thosefiles'
         colorscheme gruvbox-material
     else
         colorscheme tokyonight-moon
