@@ -46,14 +46,34 @@ require("lazy").setup({
 	-- CMP
 	"ray-x/cmp-treesitter",
 	"bydlw98/cmp-env",
-	"hrsh7th/nvim-cmp", -- Completion
-	"hrsh7th/cmp-buffer", -- nvim-cmp source for buffer words
 	"hrsh7th/cmp-nvim-lsp", -- nvim-cmp source for neovim's built-in LSP
 	"saadparwaiz1/cmp_luasnip", -- snippets cmp
 	-- 'hrsh7th/cmp-nvim-lua', -- nvim-cmp source for Lua keywords
-	"hrsh7th/cmp-path", -- nvim-cmp source for file paths
 	"chrisgrieser/cmp-nerdfont",
-	-- "jcha0713/cmp-tw2css"
+
+	"neovim/nvim-lspconfig",
+	"hrsh7th/cmp-nvim-lsp",
+	"hrsh7th/cmp-buffer",
+	"hrsh7th/cmp-path",
+	"hrsh7th/cmp-cmdline",
+	"hrsh7th/nvim-cmp",
+
+	"hrsh7th/cmp-vsnip", -- For vsnip users.
+	"hrsh7th/vim-vsnip",
+
+	-- "L3MON4D3/LuaSnip",
+
+	-- For mini.snippets users.
+	-- "echasnovski/mini.snippets",
+	-- "abeldekat/cmp-mini-snippets",
+
+	-- For ultisnips users.
+	-- "SirVer/ultisnips",
+	-- "quangnguyen30192/cmp-nvim-ultisnips",
+
+	-- For snippy users.
+	-- "dcampos/nvim-snippy",
+	-- "dcampos/cmp-snippy",
 
 	{
 		"nvimtools/none-ls.nvim",
@@ -63,7 +83,10 @@ require("lazy").setup({
 	},
 
 	"nvimtools/none-ls.nvim", -- Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua
-	"williamboman/mason.nvim",
+	{
+		"mason-org/mason.nvim",
+		opts = {}, -- required even if empty
+	},
 	"williamboman/mason-lspconfig.nvim",
 
 	{
@@ -305,4 +328,19 @@ require("lazy").setup({
 	},
 
 	"dstein64/nvim-scrollview",
+
+	{
+		{
+			"CopilotC-Nvim/CopilotChat.nvim",
+			dependencies = {
+				{ "github/copilot.vim" }, -- or zbirenbaum/copilot.lua
+				{ "nvim-lua/plenary.nvim", branch = "master" }, -- for curl, log and async functions
+			},
+			build = "make tiktoken", -- Only on MacOS or Linux
+			opts = {
+				-- See Configuration section for options
+			},
+			-- See Commands section for default commands if you want to lazy load on them
+		},
+	},
 })

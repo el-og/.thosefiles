@@ -37,6 +37,7 @@ null_ls.setup({
 		}),
 		null_ls.builtins.diagnostics.zsh,
 		null_ls.builtins.formatting.stylua,
+		null_ls.builtins.formatting.black,
 	},
 	on_attach = function(client, bufnr)
 		if client.supports_method("textDocument/formatting") then

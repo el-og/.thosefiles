@@ -68,8 +68,8 @@ telescope.setup({
 	},
 })
 
-require("git-worktree").setup({})
-telescope.load_extension("git_worktree")
+-- require("git-worktree").setup({})
+-- telescope.load_extension("git_worktree")
 
 telescope.load_extension("file_browser")
 -- telescope.load_extension("possession")

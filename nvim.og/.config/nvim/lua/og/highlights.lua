@@ -51,3 +51,5 @@ vim.cmd([[
   highlight CursorLine guibg=#ffffff ctermbg=128
   highlight Normal guibg=none
 ]])
+
+-- require("nvim-highlight-colors").setup({})
