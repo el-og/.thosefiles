@@ -3,13 +3,19 @@ local silent = { silent = true }
 
 vim.g.mapleader = " "
 
-keymap.set("n", "<leader>git", ":LazyGit<CR>", silent)
+-- keymap.set("n", "<leader>git", ":LazyGit<CR>", silent)
+keymap.set("n", "<leader>git", ":FloatermNew --height=0.9 --width=0.9 lazygit<CR>", silent)
 
 -- console.log('word_on_cursor:', word_on_cursor)
 keymap.set("n", "sl", "\"ayiwoconsole.log('<C-R>a:', <C-R>a);<Esc>", silent)
 
 -- change word under cursor
 keymap.set("n", "sr", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], silent)
+
+-- https://github.com/cshuaimin/ssr.nvim (structural search and replace)
+keymap.set({ "n", "x" }, "<leader>sr", function()
+	require("ssr").open()
+end)
 
 -- find and replace all selected characted (visual mode)
 keymap.set("v", "<C-r>", '"hy:%s/<C-r>h//gc<left><left><left>', silent)
@@ -33,6 +39,8 @@ keymap.set("n", "<leader><leader>btc", ":FloatermNew --title=sudo cointop<CR>", 
 
 -- nnoremap <silent><leader>s :lua require("harpoon.mark").add_file()<CR>
 -- nnoremap <silent><leader>ss :lua require("harpoon.ui").toggle_quick_menu()<CR>
+keymap.set("n", "<leader>,", ":lua require('harpoon.ui').toggle_quick_menu()<CR>", silent)
+keymap.set("n", "<leader>m", ":lua require('harpoon.mark').add_file()<CR>", silent)
 
 -- MISC
 --nnoremap <silent><leader><leader>e :! notify_errors_nvim.sh <CR>

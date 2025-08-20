@@ -1,6 +1,3 @@
-# HOMEBREW PATH
-# export PATH="/opt/homebrew/bin:$PATH"
-# alias python=/opt/homebrew/bin/python3
 # Handle Mac platforms
 CPU=$(uname -p)
 if [[ "$CPU" == "arm" ]]; then
@@ -14,6 +11,10 @@ else
     alias nano=/usr/local/bin/nano
 fi
 
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
 export EDITOR=nvim
 
 # TSserver logs
@@ -24,31 +25,32 @@ export PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
 export PUPPETEER_EXECUTABLE_PATH=`which chromium`
 
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+    [ -s "$HOMEBREW_PREFIX/opt/nvm/nvm.sh" ] && \. "$HOMEBREW_PREFIX/opt/nvm/nvm.sh" # This loads nvm
+    [ -s "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm" ] && \. "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm" # This loads nvm bash_completion
+
 
 # Detect nvmrc
-autoload -U add-zsh-hook
-load-nvmrc() {
-  local node_version="$(nvm version)"
-  local nvmrc_path="$(nvm_find_nvmrc)"
-
-  if [ -n "$nvmrc_path" ]; then
-    local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
-
-    if [ "$nvmrc_node_version" = "N/A" ]; then
-      nvm install
-    elif [ "$nvmrc_node_version" != "$node_version" ]; then
-      nvm use
-    fi
-  elif [ "$node_version" != "$(nvm version default)" ]; then
-    echo "Reverting to nvm default version"
-    nvm use default
-  fi
-}
-
-add-zsh-hook chpwd load-nvmrc
-load-nvmrc
+# autoload -U add-zsh-hook
+# load-nvmrc() {
+#   local node_version="$(nvm version)"
+#   local nvmrc_path="$(nvm_find_nvmrc)"
+#
+#   if [ -n "$nvmrc_path" ]; then
+#     local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
+#
+#     if [ "$nvmrc_node_version" = "N/A" ]; then
+#       nvm install
+#     elif [ "$nvmrc_node_version" != "$node_version" ]; then
+#       nvm use
+#     fi
+#   elif [ "$node_version" != "$(nvm version default)" ]; then
+#     echo "Reverting to nvm default version"
+#     nvm use default
+#   fi
+# }
+#
+# add-zsh-hook chpwd load-nvmrc
+# load-nvmrc
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -68,9 +70,9 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="powerlevel10k/powerlevel10k"
+# ZSH_THEME="powerlevel10k/powerlevel10k"
 # Powerlevel10k no prompt
-typeset -g POWERLEVEL10K_INSTANT_PROMPT=quiet
+typeset -g POWERLEVEL10K_INSTANT_PROMPT=off
 
 
 # Set list of themes to pick from when loading at random
@@ -135,7 +137,7 @@ typeset -g POWERLEVEL10K_INSTANT_PROMPT=quiet
 # Add wisely, as too many plugins slow down shell startup.
 # plugins=(git)
 # zsh autosuggest removed
-plugins=(zsh-autosuggestions git tmux ag brew fd fzf vi-mode yarn zsh-interactive-cd nvm node urltools ripgrep jira copyfile copypath web-search)
+plugins=(git tmux ag brew fd fzf vi-mode yarn zsh-interactive-cd nvm node urltools ripgrep jira copyfile copypath web-search)
 
 # auto suggestions colors
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=5'
@@ -193,7 +195,6 @@ VI_MODE_RESET_PROMPT_ON_MODE_CHANGE=true
 VI_MODE_SET_CURSOR=true
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-source /Users/oskarasg/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/oskarasg/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/oskarasg/Downloads/google-cloud-sdk/path.zsh.inc'; fi
@@ -206,8 +207,22 @@ alias sclang=/Volumes/SuperCollider/SuperCollider.app/Contents/MacOS/sclang
 alias scsynth=/Volumes/SuperCollider/SuperCollider.app/Contents/Resources/scsynth
 
 
-#OpenAI
-export OPENAI_API_KEY=
 
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /opt/homebrew/bin/terraform terraform
+
+# zsh sugar
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
+
+eval "$(fnm env --use-on-cd)"
+
+# fzf key bindings
+eval "$(fzf --zsh)"
+
+# Get world clock
+alias world_clock="sh $HOME/.thosefiles/bin/world_clock.sh"
+
+# SSH Agent Add
+# eval "$(ssh-add --apple-use-keychain ~/.ssh/id_ed25519; ssh-add --apple-use-keychain ~/.ssh/plek_gitlab;)"

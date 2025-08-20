@@ -46,14 +46,34 @@ require("lazy").setup({
 	-- CMP
 	"ray-x/cmp-treesitter",
 	"bydlw98/cmp-env",
-	"hrsh7th/nvim-cmp", -- Completion
-	"hrsh7th/cmp-buffer", -- nvim-cmp source for buffer words
 	"hrsh7th/cmp-nvim-lsp", -- nvim-cmp source for neovim's built-in LSP
 	"saadparwaiz1/cmp_luasnip", -- snippets cmp
 	-- 'hrsh7th/cmp-nvim-lua', -- nvim-cmp source for Lua keywords
-	"hrsh7th/cmp-path", -- nvim-cmp source for file paths
 	"chrisgrieser/cmp-nerdfont",
-	-- "jcha0713/cmp-tw2css"
+
+	"neovim/nvim-lspconfig",
+	"hrsh7th/cmp-nvim-lsp",
+	"hrsh7th/cmp-buffer",
+	"hrsh7th/cmp-path",
+	"hrsh7th/cmp-cmdline",
+	"hrsh7th/nvim-cmp",
+
+	"hrsh7th/cmp-vsnip", -- For vsnip users.
+	"hrsh7th/vim-vsnip",
+
+	-- "L3MON4D3/LuaSnip",
+
+	-- For mini.snippets users.
+	-- "echasnovski/mini.snippets",
+	-- "abeldekat/cmp-mini-snippets",
+
+	-- For ultisnips users.
+	-- "SirVer/ultisnips",
+	-- "quangnguyen30192/cmp-nvim-ultisnips",
+
+	-- For snippy users.
+	-- "dcampos/nvim-snippy",
+	-- "dcampos/cmp-snippy",
 
 	{
 		"nvimtools/none-ls.nvim",
@@ -63,7 +83,10 @@ require("lazy").setup({
 	},
 
 	"nvimtools/none-ls.nvim", -- Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua
-	"williamboman/mason.nvim",
+	{
+		"mason-org/mason.nvim",
+		opts = {}, -- required even if empty
+	},
 	"williamboman/mason-lspconfig.nvim",
 
 	{
@@ -85,7 +108,8 @@ require("lazy").setup({
 			--   { 'avneesh0612/react-nextjs-snippets' },
 		},
 	}, -- Snippets
-	"kipp01/stylua-nvim",
+	-- "kipp01/stylua-nvim",
+	"wesleimp/stylua.nvim",
 
 	"nvim-treesitter/nvim-treesitter",
 
@@ -107,11 +131,35 @@ require("lazy").setup({
 	-- 'terrortylor/nvim-comment',
 
 	"norcalli/nvim-colorizer.lua",
-	-- use 'folke/zen-mode.nvim'
-	-- ({
-	--     "iamcco/markdown-preview.nvim",
-	--     run = function() vim.fn["mkdp#util#install"]() end,
-	-- }),
+	"MeanderingProgrammer/render-markdown.nvim",
+	{
+		-- Install markdown preview, use npx if available.
+		"iamcco/markdown-preview.nvim",
+		cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+		ft = { "markdown" },
+		build = function(plugin)
+			if vim.fn.executable("npx") then
+				vim.cmd("!cd " .. plugin.dir .. " && cd app && npx --yes yarn install")
+			else
+				vim.cmd([[Lazy load markdown-preview.nvim]])
+				vim.fn["mkdp#util#install"]()
+			end
+		end,
+		init = function()
+			if vim.fn.executable("npx") then
+				vim.g.mkdp_filetypes = { "markdown" }
+			end
+		end,
+	},
+
+	{
+		"brenoprata10/nvim-highlight-colors",
+		config = function()
+			require("nvim-highlight-colors").setup({})
+		end,
+	},
+
+	-- { "ellisonleao/glow.nvim", config = true, cmd = "Glow" },
 
 	"nvim-tree/nvim-tree.lua",
 
@@ -126,6 +174,7 @@ require("lazy").setup({
 
 	"theprimeagen/harpoon",
 	"ThePrimeagen/refactoring.nvim",
+	"polarmutex/git-worktree.nvim",
 
 	-- use 'tpope/vim-fugitive'
 	-- use 'tpope/vim-abolish'
@@ -153,8 +202,11 @@ require("lazy").setup({
 	{ "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
 
 	"voldikss/vim-floaterm",
-	"renerocksai/telekasten.nvim",
-	"renerocksai/calendar-vim",
+	{
+		"renerocksai/telekasten.nvim",
+		dependencies = { "nvim-telescope/telescope.nvim" },
+	},
+	"nvim-telekasten/calendar-vim",
 
 	{
 		"chrsm/impulse.nvim",
@@ -172,7 +224,13 @@ require("lazy").setup({
 	"lewis6991/impatient.nvim", -- Speed up loading Lua modules in Neovim to improve startup time.
 	-- 'jbyuki/venn.nvim', -- draw ASCII
 
-	"zbirenbaum/copilot.lua",
+	{
+		"github/copilot.vim",
+		init = function()
+			-- This runs before the plugin loads, to set NODE version
+			vim.g.copilot_node_command = os.getenv("HOME") .. "/.nvm/versions/node/v20.19.0/bin/node"
+		end,
+	},
 
 	-- 'jackMort/ChatGPT.nvim',
 	-- 'MunifTanjim/nui.nvim',
@@ -187,7 +245,27 @@ require("lazy").setup({
 
 	{ "Wansmer/treesj", requires = "nvim-treesitter" }, -- split or join blocks of code
 
-	{ "cshuaimin/ssr.nvim", module = "ssr" }, -- structural search and replace
+	{
+		"cshuaimin/ssr.nvim",
+		module = "ssr",
+		config = function()
+			require("ssr").setup({
+				border = "rounded",
+				min_width = 50,
+				min_height = 5,
+				max_width = 120,
+				max_height = 25,
+				adjust_window = true,
+				keymaps = {
+					close = "q",
+					next_match = "n",
+					prev_match = "N",
+					replace_confirm = "<cr>",
+					replace_all = "<leader><cr>",
+				},
+			})
+		end,
+	}, -- structural search and replace
 	-- 'simrat39/symbols-outline.nvim', -- tree like view/manager for symbols
 	{ "barrett-ruth/import-cost.nvim", run = "sh install.sh yarn" }, -- display the costs of javascript imports
 
@@ -197,172 +275,43 @@ require("lazy").setup({
 
 	-- use "rest-nvim/rest.nvim" -- http client written in Lua.
 
-	-- Debugging
+	-- lazy.nvim:
 
-	--   {
-	--   "mfussenegger/nvim-dap",
-	--   config = function()
-	--     local dap = require("dap")
-	--
-	--     -- local Config = require("lazyvim.config")
-	--     vim.api.nvim_set_hl(0, "DapStoppedLine", { default = true, link = "Visual" })
-	--
-	--     -- for name, sign in pairs(Config.icons.dap) do
-	--     --   sign = type(sign) == "table" and sign or { sign }
-	--     --   vim.fn.sign_define(
-	--     --     "Dap" .. name,
-	--     --     { text = sign[1], texthl = sign[2] or "DiagnosticInfo", linehl = sign[3], numhl = sign[3] }
-	--     --   )
-	--     -- end
-	--
-	--     for _, language in ipairs(js_based_languages) do
-	--       dap.configurations[language] = {
-	--         -- Debug single nodejs files
-	--         {
-	--           type = "pwa-node",
-	--           request = "launch",
-	--           name = "Launch file",
-	--           program = "${file}",
-	--           cwd = vim.fn.getcwd(),
-	--           sourceMaps = true,
-	--         },
-	--         -- Debug nodejs processes (make sure to add --inspect when you run the process)
-	--         {
-	--           type = "pwa-node",
-	--           request = "attach",
-	--           name = "Attach",
-	--           processId = require("dap.utils").pick_process,
-	--           cwd = vim.fn.getcwd(),
-	--           sourceMaps = true,
-	--         },
-	--         -- Debug web applications (client side)
-	--         {
-	--           type = "pwa-chrome",
-	--           request = "launch",
-	--           name = "Launch & Debug Chrome",
-	--           url = function()
-	--             local co = coroutine.running()
-	--             return coroutine.create(function()
-	--               vim.ui.input({
-	--                 prompt = "Enter URL: ",
-	--                 default = "http://localhost:3000",
-	--               }, function(url)
-	--                 if url == nil or url == "" then
-	--                   return
-	--                 else
-	--                   coroutine.resume(co, url)
-	--                 end
-	--               end)
-	--             end)
-	--           end,
-	--           webRoot = vim.fn.getcwd(),
-	--           protocol = "inspector",
-	--           sourceMaps = true,
-	--           userDataDir = false,
-	--         },
-	--         -- Divider for the launch.json derived configs
-	--         {
-	--           name = "----- ↓ launch.json configs ↓ -----",
-	--           type = "",
-	--           request = "launch",
-	--         },
-	--       }
-	--     end
-	--   end,
-	--   keys = {
-	--     {
-	--       "<leader>dO",
-	--       function()
-	--         require("dap").step_out()
-	--       end,
-	--       desc = "Step Out",
-	--     },
-	--     {
-	--       "<leader>do",
-	--       function()
-	--         require("dap").step_over()
-	--       end,
-	--       desc = "Step Over",
-	--     },
-	--     {
-	--       "<leader>da",
-	--       function()
-	--         if vim.fn.filereadable(".vscode/launch.json") then
-	--           local dap_vscode = require("dap.ext.vscode")
-	--           dap_vscode.load_launchjs(nil, {
-	--             ["pwa-node"] = js_based_languages,
-	--             ["chrome"] = js_based_languages,
-	--             ["pwa-chrome"] = js_based_languages,
-	--           })
-	--         end
-	--         require("dap").continue()
-	--       end,
-	--       desc = "Run with Args",
-	--     },
-	--   },
-	--   dependencies = {
-	--     -- Install the vscode-js-debug adapter
-	--     {
-	--       "microsoft/vscode-js-debug",
-	--       -- After install, build it and rename the dist directory to out
-	--       build = "npm install --legacy-peer-deps --no-save && npx gulp vsDebugServerBundle && rm -rf out && mv dist out",
-	--       version = "1.*",
-	--     },
-	--     {
-	--       "mxsdev/nvim-dap-vscode-js",
-	--       config = function()
-	--         ---@diagnostic disable-next-line: missing-fields
-	--         require("dap-vscode-js").setup({
-	--           -- Path of node executable. Defaults to $NODE_PATH, and then "node"
-	--           -- node_path = "node",
-	--
-	--           -- Path to vscode-js-debug installation.
-	--           debugger_path = vim.fn.resolve(vim.fn.stdpath("data") .. "/lazy/vscode-js-debug"),
-	--
-	--           -- Command to use to launch the debug server. Takes precedence over "node_path" and "debugger_path"
-	--           -- debugger_cmd = { "js-debug-adapter" },
-	--
-	--           -- which adapters to register in nvim-dap
-	--           adapters = {
-	--             "chrome",
-	--             "pwa-node",
-	--             "pwa-chrome",
-	--             "pwa-msedge",
-	--             "pwa-extensionHost",
-	--             "node-terminal",
-	--           },
-	--
-	--           -- Path for file logging
-	--           -- log_file_path = "(stdpath cache)/dap_vscode_js.log",
-	--
-	--           -- Logging level for output to file. Set to false to disable logging.
-	--           -- log_file_level = false,
-	--
-	--           -- Logging level for output to console. Set to false to disable console output.
-	--           -- log_console_level = vim.log.levels.ERROR,
-	--         })
-	--       end,
-	--     },
-	--     {
-	--       "Joakker/lua-json5",
-	--       build = "./install.sh",
-	--     },
-	--   },
-	-- },
-	--
-	--   -- "mason-nvim-dap.nvim",
-	--   { "rcarriga/nvim-dap-ui", dependencies = {"mfussenegger/nvim-dap", "nvim-neotest/nvim-nio"} },
-	--   -- { "mxsdev/nvim-dap-vscode-js", requires = {"mfussenegger/nvim-dap"} },
-	--   'theHamsta/nvim-dap-virtual-text',
-	-- {
-	--   "microsoft/vscode-js-debug",
-	--   opt = true,
-	--   run = "npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out"
-	-- },
-	-- 'ravenxrz/DAPInstall.nvim',
-	-- use 'Pocco81/dap-buddy.nvim'
-	-- use 'David-Kunz/jester' -- jest
+	-- Folding
+	"kevinhwang91/nvim-ufo",
+	"kevinhwang91/promise-async",
+
+	-- Folding side column
+	{
+		"luukvbaal/statuscol.nvim",
+		opts = function()
+			local builtin = require("statuscol.builtin")
+			return {
+				setopt = true,
+				-- override the default list of segments with:
+				-- number-less fold indicator, then signs, then line number & separator
+				segments = {
+					{ text = { builtin.foldfunc }, click = "v:lua.ScFa" },
+					{ text = { "%s" }, click = "v:lua.ScSa" },
+					{
+						text = { builtin.lnumfunc, " " },
+						condition = { true, builtin.not_empty },
+						click = "v:lua.ScLa",
+					},
+				},
+			}
+		end,
+	},
+
+	"David-Kunz/jester", -- jest
 	"folke/todo-comments.nvim",
+
+	{
+		"stevearc/oil.nvim",
+		opts = {},
+		-- Optional dependencies
+		-- dependencies = { "nvim-tree/nvim-web-devicons" },
+	},
 
 	{
 		"anuvyklack/windows.nvim",
@@ -378,20 +327,20 @@ require("lazy").setup({
 		end,
 	},
 
-	-- {
-	--     "folke/noice.nvim",
-	--     event = "VeryLazy",
-	--     opts = {
-	--     -- add any options here
-	--     },
-	--     dependencies = {
-	--     -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
-	--     "MunifTanjim/nui.nvim",
-	--     -- OPTIONAL:
-	--     --   `nvim-notify` is only needed, if you want to use the notification view.
-	--     --   If not available, we use `mini` as the fallback
-	--     -- "rcarriga/nvim-notify",
-	--     }
-	-- },
 	"dstein64/nvim-scrollview",
+
+	{
+		{
+			"CopilotC-Nvim/CopilotChat.nvim",
+			dependencies = {
+				{ "github/copilot.vim" }, -- or zbirenbaum/copilot.lua
+				{ "nvim-lua/plenary.nvim", branch = "master" }, -- for curl, log and async functions
+			},
+			build = "make tiktoken", -- Only on MacOS or Linux
+			opts = {
+				-- See Configuration section for options
+			},
+			-- See Commands section for default commands if you want to lazy load on them
+		},
+	},
 })
