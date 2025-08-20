@@ -1,15 +1,16 @@
 # Handle Mac platforms
-CPU=$(uname -p)
-if [[ "$CPU" == "arm" ]]; then
-    export PATH="/opt/homebrew/bin:$PATH"
-    export EDITOR=/opt/homebrew/bin/nano
-    alias nano=/opt/homebrew/bin/nano
-    alias oldbrew=/usr/local/bin/brew
-else
-    export PATH="/usr/local/bin:$PATH"
-    export EDITOR=/usr/local/bin/nano
-    alias nano=/usr/local/bin/nano
-fi
+# CPU=$(uname -p)
+# if [[ "$CPU" == "arm" ]]; then
+#     export PATH="/opt/homebrew/bin:$PATH"
+#     export EDITOR=/opt/homebrew/bin/nano
+#     alias nano=/opt/homebrew/bin/nano
+#     alias oldbrew=/usr/local/bin/brew
+# else
+#     export PATH="/usr/local/bin:$PATH"
+#     export EDITOR=/usr/local/bin/nano
+#     alias nano=/usr/local/bin/nano
+# fi
+
 
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
@@ -20,8 +21,8 @@ export EDITOR=nvim
 # TSserver logs
 set TSS_LOG=-level verbose -file  $HOME/tsserver.log
 
-# DISABLE CHROMIUM INSTALLATION WITH PUPETEER
-export PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
+# # DISABLE CHROMIUM INSTALLATION WITH PUPETEER
+# export PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
 export PUPPETEER_EXECUTABLE_PATH=`which chromium`
 
 export NVM_DIR="$HOME/.nvm"
@@ -137,7 +138,7 @@ typeset -g POWERLEVEL10K_INSTANT_PROMPT=off
 # Add wisely, as too many plugins slow down shell startup.
 # plugins=(git)
 # zsh autosuggest removed
-plugins=(git tmux ag brew fd fzf vi-mode yarn zsh-interactive-cd nvm node urltools ripgrep jira copyfile copypath web-search)
+plugins=(git brew fzf vi-mode yarn zsh-interactive-cd nvm node urltools jira copyfile copypath web-search)
 
 # auto suggestions colors
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=5'
@@ -175,7 +176,10 @@ alias v="nvim"
 alias vim="nvim"
 
 alias tog="tmux attach -d -t og || tmux new -s og"
-alias tmistergreen="tmux attach -d -t mistergreen || tmux new -s mistergreen"
+alias tssenv='tmux attach -d -t synthetic-state || tmux new-session -d -s synthetic-state \; send-keys "cd ~/Projects/data_server/nest-server/ && nvim" C-m \; split-window -v -l 30\% \; send-keys "cd ~/Projects/data_server/nest-server/ && clear" C-m \; attach-session -t synthetic-state'
+alias tlizzr='tmux attach -d -t trading-journal || tmux new-session -d -s trading-journal \; send-keys "cd ~/Projects/tjog-monorepo/ && nvim" C-m \; split-window -v -l 30\% \; send-keys "cd ~/Projects/tjog-monorepo/ && clear" C-m \; attach-session -t trading-journal'
+alias tnote='tmux attach -d -t notes || tmux new-session -d -s notes \; send-keys "cd ~/Obsidian/ && nvim" C-m \; split-window -v -l 30\% \; send-keys "cd ~/Obsidian/ && clear" C-m \; attach-session -t notes'
+
 
 alias cls="clear"
 
@@ -203,10 +207,13 @@ if [ -f '/Users/oskarasg/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Us
 if [ -f '/Users/oskarasg/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/oskarasg/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
 
 #SuperCollider
-alias sclang=/Volumes/SuperCollider/SuperCollider.app/Contents/MacOS/sclang
-alias scsynth=/Volumes/SuperCollider/SuperCollider.app/Contents/Resources/scsynth
+# alias sclang=/Volumes/SuperCollider/SuperCollider.app/Contents/MacOS/sclang
+# alias scsynth=/Volumes/SuperCollider/SuperCollider.app/Contents/Resources/scsynth
 
 
+
+#Plek
+export NPM_PLEK_TOKEN=
 
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /opt/homebrew/bin/terraform terraform
