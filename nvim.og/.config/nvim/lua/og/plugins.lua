@@ -351,10 +351,6 @@ require("lazy").setup({
 		version = false,
 		build = "make",
 
-		config = function()
-			require("config.avante")
-		end,
-
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter",
 			"stevearc/dressing.nvim",

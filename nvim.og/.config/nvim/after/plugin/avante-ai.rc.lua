@@ -12,7 +12,9 @@ avante.setup({
 			model = "gpt-4o-2024-05-13",
 			timeout = 30000,
 			temperature = 0,
-			max_tokens = 4096,
+			extra_request_body = {
+				max_tokens = 4096,
+			},
 		},
 	},
 
