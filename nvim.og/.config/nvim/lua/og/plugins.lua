@@ -228,7 +228,7 @@ require("lazy").setup({
 		"github/copilot.vim",
 		init = function()
 			-- This runs before the plugin loads, to set NODE version
-			vim.g.copilot_node_command = os.getenv("HOME") .. "/.nvm/versions/node/v20.19.0/bin/node"
+			vim.g.copilot_node_command = os.getenv("HOME") .. "/.nvm/versions/node/v22.21.1/bin/node"
 		end,
 	},
 
@@ -341,6 +341,34 @@ require("lazy").setup({
 				-- See Configuration section for options
 			},
 			-- See Commands section for default commands if you want to lazy load on them
+		},
+	},
+	-- In your plugins file (lazy.nvim)
+	{
+		"yetone/avante.nvim",
+		event = "VeryLazy",
+		lazy = false,
+		version = false,
+		build = "make",
+
+		config = function()
+			require("config.avante")
+		end,
+
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter",
+			"stevearc/dressing.nvim",
+			"nvim-lua/plenary.nvim",
+			"MunifTanjim/nui.nvim",
+			"nvim-tree/nvim-web-devicons",
+			"github/copilot.vim",
+			{
+				"MeanderingProgrammer/render-markdown.nvim",
+				opts = {
+					file_types = { "markdown", "Avante" },
+				},
+				ft = { "markdown", "Avante" },
+			},
 		},
 	},
 })
